@@ -1,0 +1,50 @@
+[
+    {
+        "name": "joshtronic/php-googleplaces",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/joshtronic/php-googleplaces.git",
+            "reference": "4497b6c0b6c8e0670216a1ae84c5de2c4edfcd3b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/joshtronic/php-googleplaces/zipball/4497b6c0b6c8e0670216a1ae84c5de2c4edfcd3b",
+            "reference": "4497b6c0b6c8e0670216a1ae84c5de2c4edfcd3b",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "satooshi/php-coveralls": "dev-master"
+        },
+        "time": "2014-09-20T05:57:08+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "joshtronic\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Josh Sherman",
+                "email": "josh@gravityblvd.com",
+                "homepage": "https://github.com/joshtronic/php-googleplaces"
+            }
+        ],
+        "description": "PHP Wrapper for the Google Places API",
+        "homepage": "https://github.com/joshtronic/php-googleplaces",
+        "keywords": [
+            "api",
+            "google",
+            "places"
+        ]
+    }
+]

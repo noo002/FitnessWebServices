@@ -1,0 +1,64 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "556680facce0e0379c7675f8277a2117",
+    "packages": [
+        {
+            "name": "joshtronic/php-googleplaces",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joshtronic/php-googleplaces.git",
+                "reference": "4497b6c0b6c8e0670216a1ae84c5de2c4edfcd3b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joshtronic/php-googleplaces/zipball/4497b6c0b6c8e0670216a1ae84c5de2c4edfcd3b",
+                "reference": "4497b6c0b6c8e0670216a1ae84c5de2c4edfcd3b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "joshtronic\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josh Sherman",
+                    "email": "josh@gravityblvd.com",
+                    "homepage": "https://github.com/joshtronic/php-googleplaces"
+                }
+            ],
+            "description": "PHP Wrapper for the Google Places API",
+            "homepage": "https://github.com/joshtronic/php-googleplaces",
+            "keywords": [
+                "api",
+                "google",
+                "places"
+            ],
+            "time": "2014-09-20T05:57:08+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
