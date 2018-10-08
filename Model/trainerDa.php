@@ -55,7 +55,6 @@ class trainerDa {
         $conn  = Connection::getInstance();
         $sqlInserted = "";
     }
-
 }
 
 //$da = new trainerDa();
