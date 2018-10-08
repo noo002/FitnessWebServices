@@ -102,8 +102,26 @@ class managementLoginDa {
         }
     }
 
+    public function getCurrentPassword($email, $password) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getManagementPassword(?,?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $email);
+        $stmt->bindParam(2, $password);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new managementLoginDa();
-//$result = $da->getManagementDetail("eugence966@hotmail.com", 123456);
-//print_r($result);
+//$result = $da->updateManagementPassword("eugence966@hotmail.com", "abcd1234");
+//echo $result;

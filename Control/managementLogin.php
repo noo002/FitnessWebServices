@@ -34,7 +34,7 @@ if (!empty($managementEmail) && !empty($managementPassword)) {
     $managementDa = new managementLoginDa();
     $result = $managementDa->managementLogin($managementEmail, $managementPassword);
     if ($result > 1 || $result < 0 || $result == 0) {
-        $cf->message("Problem have occur please check internal problem" . $result);
+        $cf->message("Invalid email or password");
         $cf->redicrect("../View/Web/home.php");
     } else if ($result == 1) {
         session_start();
@@ -42,6 +42,6 @@ if (!empty($managementEmail) && !empty($managementPassword)) {
         $management = $managementDa->getManagementDetail($managementEmail, $managementPassword);
         $_SESSION['managementDetail']  = $management;
         $path = "../View/Web/Management/studentList.php";
-        $cf->messageAndRedict("ok", $path);
+        $cf->messageAndRedict("Welcome", $path);
     }
 }

@@ -8,29 +8,34 @@
             </div>
             <div class="modal-body">
                 <script>
-                    function checkPass(textbox) {
-                        var pass = document.getElementById("password").value;
-                        if(textbox.value !=pass) {
-                            textbox.setCustomValidity('Password Must be Matching.');
+                    function checkNewPassword() {
+                        var currentPassword = document.getElementById('currentPassword');
+                        var newPassword = document.getElementById('newPassword').value;
+                        var confirmedPassword = document.getElementById('confirmPassword').value;
+                        if (newPassword !== confirmedPassword) {
+                            alert('new password and confirmed password are not same');
+                            currentPassword.value = "";
+                            var newPass = document.getElementById('newPassword');
+                            newPass.value = "";
+                            var confirmedPass = document.getElementById('confirmPassword');
+                            confirmedPass.value = "";
+                            return false;
                         }
-                        else{
-                            textbox.setCustomValidity('');
-                        }
-                    };
+                    }
                 </script>
 
-                <form action="" method="post">
+                <form action="../../../Control/changePassword.php" onsubmit="return checkNewPassword()"  method="post">
                     <div class="form-group">
                         <label for="name"> Current Password</label>
-                        <input type="password"  name="password" maxlength="20" minlength="6" pattern="" title="Current Password not match" class="form-control" required/>
+                        <input type="password" id="currentPassword"  autofocus name="currentPassword" maxlength="20" minlength="6"  class="form-control" required/>
                     </div>
                     <div class="form-group">
                         <label for="name"> New Password</label>
-                        <input type="password" name="newPassword" maxlength="20" minlength="6" pattern="[A-Za-z1-9]{3,255}" title="Not allow special symbol & number" class="form-control" required/>
+                        <input type="password" id="newPassword" name="newPassword" maxlength="20" minlength="6" pattern="[A-Za-z1-9]{3,255}" title="Not allow special symbol & number" class="form-control" required/>
                     </div>
                     <div class="form-group">
                         <label for="name"> Confirm password</label>
-                        <input type="password" oninvalid="checkPass(this);" oninput="checkPass(this);" maxlength="20" minlength="6" pattern="[A-Za-z1-9]{3,255}" title="Not allow special symbol & number" class="form-control" required/>
+                        <input type="password"  name="confirmPassword" id="confirmPassword" maxlength="20" minlength="6" pattern="[A-Za-z1-9]{3,255}" title="Not allow special symbol & number" class="form-control" required/>
                     </div>
                     <button type="submit" name="changePass" class="btn btn-success btn-block"><span class="glyphicon glyphicon-pencil"></span> Update</button>
                 </form>

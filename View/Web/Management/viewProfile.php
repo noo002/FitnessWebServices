@@ -23,7 +23,15 @@ $management = $_SESSION['managementDetail'];
                     <tr>
                         <td>Gender</td>
                         <td>   <?php
-                       echo $management->gender;
+                            if($management->gender ==1){
+                                echo "Male";
+                            }
+                            else if($management->gender ==2){
+                                echo "Female";
+                            }
+                            else{
+                                echo "Problem occur with 3rd gender";
+                            }
                             ?>
                         </td>
                     </tr>
@@ -31,7 +39,7 @@ $management = $_SESSION['managementDetail'];
                         <td>Email</td>
                         <td>
                             <?php
-                  echo $management->email;
+                            echo $management->email;
                             ?>
 
                         </td>

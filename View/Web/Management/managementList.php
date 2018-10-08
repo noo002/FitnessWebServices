@@ -32,7 +32,7 @@ require_once 'header.php';
             else if($key->active ==2){
                 echo "<td>Inactive</td>";
             }
-            echo '<td class="text-center"><a class="btn btn-success btn-xs""><span class="glyphicon glyphicon-pencil"></span> Edit</a></td>';
+            echo '<td class="text-center"><a class="btn btn-success btn-xs""><span class="glyphicon glyphicon-pencil"></span> Edit</a>&nbsp;&nbsp;<a class="btn btn-primary btn-xs" href="#"><span class="glyphicon glyphicon-ok"></span> Active</a></td>';
             echo "</tr>";
         }
         ?>

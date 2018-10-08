@@ -80,6 +80,7 @@ if (empty($managementEmail)) {
                                 <li><a href="#" onclick="viewProfile()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
                                 <li><a href="#" onclick="editProfile()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-pencil"></span> Edit Profile</a></li>
                                 <li><a href="#" onclick="changePass()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-cog"></span> Change Password</a></li>
+                                <li><a href="#" style="font-size:12pt;"><span class="glyphicon glyphicon-lock"></span>&nbsp; View Security</a></li>
                                 <li><hr/></li>
 
                                 <li><a href="../../../Control/managementLogout.php" style="font-size:12pt;"  ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
