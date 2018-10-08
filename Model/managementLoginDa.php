@@ -120,8 +120,23 @@ class managementLoginDa {
         }
     }
 
+    public function updateManagementProfile($email, $name, $gender) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call updateManagementProfile(?,?,?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $email);
+        $stmt->bindParam(2, $name);
+        $stmt->bindParam(3, $gender);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new managementLoginDa();
-//$result = $da->updateManagementPassword("eugence966@hotmail.com", "abcd1234");
+//$result = $da->updateManagementProfile("eugence966@hotmail.com", "Heng Hui Jing", 1);
 //echo $result;

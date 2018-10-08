@@ -13,15 +13,16 @@
  */
 class trainer {
 
-    private $name, $gender, $email, $experience, $certificate, $status;
+    private $name, $address, $gender, $birthdate, $email, $experience, $certificate;
 
-    function __construct($name, $gender, $email, $experience, $certificate, $status) {
+    function __construct($name, $address, $gender, $birthdate, $email, $experience, $certificate) {
         $this->name = $name;
+        $this->address = $address;
         $this->gender = $gender;
+        $this->birthdate = $birthdate;
         $this->email = $email;
         $this->experience = $experience;
         $this->certificate = $certificate;
-        $this->status = $status;
     }
 
     public function __get($property) {

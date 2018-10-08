@@ -24,13 +24,40 @@ class trainerDa {
         try {
             $stmt->execute();
             $trainerArray = array();
-            foreach($stmt->fetchAll() as $row){
+            foreach ($stmt->fetchAll() as $row) {
                 $trainer = new trainer($row['name'], $row['gender'], $row['email'], $row['experience'], $row['certificate'], $row['status']);
-                array_push($trainerArray,$trainer);
+                array_push($trainerArray, $trainer);
             }
             return $trainerArray;
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
     }
+
+    public function checkExistedEmail($email) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call checkExistedTrainerEmail(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $email);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function registerNewTrainer($trainer) {
+        $conn  = Connection::getInstance();
+        $sqlInserted = "";
+    }
+
 }
+
+//$da = new trainerDa();
+//$result = $da->checkExistedEmail("abc@hotmail.com");
+//echo $result;

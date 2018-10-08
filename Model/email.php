@@ -22,12 +22,6 @@ class email {
         $this->body = $body;
     }
 
-    public function __get($property) {
-        if (property_exists($this, $property)) {
-            return $this->$property;
-        }
-    }
-
     private function checkEmailFormat() {
         $result = false;
         if (filter_var($this->to, FILTER_VALIDATE_EMAIL)) {
