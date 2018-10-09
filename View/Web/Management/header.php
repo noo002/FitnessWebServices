@@ -69,7 +69,7 @@ if (empty($managementEmail)) {
                     <li ><a href="../../../Control/trainerList.php">Trainer</a></li>
                     <li class="register"><a href="studentList.php">Student</a></li>
                     <li class="register"><a href="../../../Control/managementList.php">Management</a></li>
-                    <li><a href="../../../Control/foodList.php">Foods Nutrient</a></li>
+                    <li><a href="../../../Control/foodList.php">Food Nutrient</a></li>
                     <li><a href="../../../Control/activityList.php">Activity</a></li>
 
                     <ul class="nav navbar-nav navbar-right">

@@ -51,13 +51,13 @@ class email {
                 $message = 'Mailer Error: ' . $smtp->ErrorInfo;
             } else {
                 $message = "Please check your email";
+                $cf->message($message);
             }
-            $cf->messageAndRedict($message, $path);
         } else {
             $cf = new commonFunction();
             $message = "Email are not validated";
-            $path = "../View/Web/home.php";
-            $cf->messageAndRedict($message, $path);
+            $cf->message($message);
+            
         }
     }
 

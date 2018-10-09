@@ -10,7 +10,7 @@ require_once '../Model/email.php';
 $email = $_POST['email'];
 
 $cf = new commonFunction();
-$path = "javascript:history.go(-1)";
+$path = "trainerList.php";
 if (!$cf->checkEmailFormat($email)) {
     $message = "Invalid email format please reenter";
     $cf->messageAndRedict($message, $path);
@@ -30,7 +30,7 @@ if ($cf->checkEmailFormat($email) == true) {
 
             $trainerPassword = random_code(6);
             strtoupper($trainerPassword);
-            echo $trainerPassword;
+
             $result = $trainerDa->registerNewTrainer($trainer, $trainerPassword);
             if ($result > 0) {
                 session_start();
@@ -43,8 +43,8 @@ if ($cf->checkEmailFormat($email) == true) {
                 $from = "FitnessApplication2018@gmail.com";
                 $to = "eugence966@hotmail.com";
                 $subject = "Your new Password";
-                $body = "Your new password is $trainerPassword.\n"
-                        . "please enter this new password into the System.\n"
+                $body = "Your password is $trainerPassword.\n"
+                        . "please enter this  password into the System.\n"
                         . "Please change your password once you access it.\n"
                         . "This is the computer generated email, no reply to it thank you,";
 

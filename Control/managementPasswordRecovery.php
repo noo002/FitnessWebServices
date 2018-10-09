@@ -25,8 +25,10 @@ if ($result == true) {
     $smtpEmail = new email($host, $username, $password, $from, $to, $subject, $body);
     $smtpEmail->sendEmail();
     $result = $managementDa->updateManagementPassword($email, $code);
-}
-else{
+    $cf = new commonFunction();
+    $path = "../View/Web/home.php";
+    $cf->messageAndRedict($message, $path);
+} else {
     $cf = new commonFunction();
     $message = "Email are invalid";
     $path = "../View/Web/home.php";

@@ -135,6 +135,27 @@ class managementLoginDa {
         }
     }
 
+    public function registerNewManagement($management, $password) {
+        $conn = Connection::getInstance();
+        $sqlInserted = "call registerNewManagement(?,?,?,?,?)";
+        $name = $management->name;
+        $gender = $management->gender;
+        $address = $management->address;
+        $email = $management->email;
+        $stmt = $conn->getDb()->prepare($sqlInserted);
+        $stmt->bindParam(1, $name);
+        $stmt->bindParam(2, $gender);
+        $stmt->bindParam(3, $address);
+        $stmt->bindParam(4, $email);
+        $stmt->bindParam(5, $password);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new managementLoginDa();

@@ -29,8 +29,12 @@ class commonFunction {
     public function message($message) {
         echo "<script>alert('$message')</script>";
     }
-    public function redicrect($path){
+
+    public function redicrect($path) {
         echo "<script>window.location.href='$path';</script>";
     }
 
+    public function random_code($limit) {
+        return substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, $limit);
+    }
 }
