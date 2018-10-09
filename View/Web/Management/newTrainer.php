@@ -28,11 +28,11 @@
                     </div>
                     <div class="form-group">
                         <label for="year"></span> Address</label>
-                        <input type="number" min="0" maxlength="255" class="form-control" name="address" placeholder="Enter year" required  title="Not allow negative number"/>
+                        <input type="text" min="0" maxlength="255" class="form-control" name="address" placeholder="Enter year" required  title="Not allow negative number"/>
                     </div>
                     <div class="form-group">
-                        <label for="year"></span> Birthdate</label>
-                        <input type="number" min="0" maxlength="255" class="form-control" name="birthdate" placeholder="Enter year" required  title="Not allow negative number"/>
+                        <label for="year"></span> Birthdate (example : 2016-6-6)</label>
+                        <input type="text" min="0" maxlength="255" class="form-control" name="birthdate" placeholder="Enter year" required  title="Not allow negative number"/>
                     </div>
                     <div class="form-group">
                         <label for="year"></span> Year of experience</label>
