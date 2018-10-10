@@ -13,6 +13,10 @@ class activity {
         $this->suggestedDuration = $suggestedDuration;
     }
 
+    function setImage($image) {
+        $this->image = $image;
+    }
+
     public function __get($property) {
         if (property_exists($this, $property)) {
             return $this->$property;

@@ -31,11 +31,15 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Food Type </label>
-                        <input type="text" name="foodType"  maxlength="255" class="form-control" placeholder="Enter food type" required/>
+                        <select name="foodType" class="form-control">
+                            <option>Rice</option>
+                            <option>Chicken</option>. <option>Drink</option>
+                            <option>Fish</option> <option>Fruit</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="name">Measurement (1 = gram, 2 = cup) </label>
-                        <input type="number"  name="measurement"  maxlength="255" class="form-control" placeholder="Enter food measurement" required/>
+                        <label for="name">Measurement (1 = g, 2 = ml) </label>
+                        <input type="number"  name="measurement"  maxlength="255" class="form-control" placeholder="Enter food measurement code" required/>
                     </div>
                     <div class="form-group">
                         <label for="name">Barcode</label>

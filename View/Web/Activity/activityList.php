@@ -19,7 +19,12 @@
         $activityList = $_SESSION['activityList'];
         foreach ($activityList as $row => $key) {
             echo "<tr>";
-            echo "<td><img src='../../../noimage.png' width='80px' height='80px'/> </td>";
+            if ($key->image == null) {
+                echo "<td><img src='../../../noimage.png' width='80px' height='80px'/> </td>";
+            } else {
+                // echo '<img src="data:image/jpeg;base64,'.base64_encode( $key['image'] ).'"/>';
+                echo '<td><img src="data:image/jpeg;base64,' . $key->image. '" width="80px" height="80px"/></td>';
+            }
             echo "<td>$key->name</td>";
             echo "<td>$key->caloriesBurnPerMin</td>";
             echo "<td>$key->suggestedDuration</td>";

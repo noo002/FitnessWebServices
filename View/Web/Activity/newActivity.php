@@ -6,14 +6,14 @@
                 <h4 class="modal-title">New Activity</h4>
             </div>       
             <div class="modal-body">
-                <form action="../../../Control/newActivity.php" method="post">
+                <form action="../../../Control/newActivity.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="newIsImage" id="newIsImage" />
                     <div class="form-group">
                         <img id="newImage" name="newImage" src="../image/logo-small.png" width="80px" height="80px"/>
                         <br/>
                         <br/>
                     <!----    <input type="file" name="fileToUpload"  class="form-control"  accept="image/*" />--->
-                        <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*">
+                        <input type="file" name="fileToUpload" id="" class="form-control" accept="image/*">
 
                     </div>
                     <div class="form-group">
