@@ -17,13 +17,7 @@ class facadeNewActivity {
         $result = $this->insertNewActivity();
         $cf = new commonFunction();
         $path = "activityList.php";
-        if ($result > 0) {
-            $message = "New Activity was created";
-            $cf->messageAndRedict($message, $path);
-        } else {
-            $message = "Error occur during insert new activity";
-            $cf->messageAndRedict($message, $path);
-        }
+        return $result;
     }
 
     function getActivity() {

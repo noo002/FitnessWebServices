@@ -21,28 +21,29 @@ if (!empty($image['tmp_name'])) {
         $path = addslashes($image['tmp_name']); //the name
         $file = file_get_contents($path);                 //the path mistaked wrong variable in very initial state
         $encodeFile = base64_encode($file);       //encoded as base64 and store to db
-        // echo '<img src="data:image/jpeg;base64,' . $encodeFile . '"/>';  //display the image in form of html
+// echo '<img src="data:image/jpeg;base64,' . $encodeFile . '"/>';  //display the image in form of html
         $imageExist = true;
         $image = $encodeFile;
     }
 }
-if (ctype_alpha($name)) {
-    if (!empty($name) && !empty($desc) && !empty($calories) && !empty($recommendTime)) {
+if (!empty($name) && !empty($desc) && !empty($calories) && !empty($recommendTime)) {
 
-        if ($imageExist == false) {
-            $imageDirectory = "noimage.png";
-            $image = base64_encode(file_get_contents($imageDirectory));
-            //  echo '<img src="data:image/jpeg;base64,'.$imageData.'"/>';
-        }
-        $newActivity = new activity("", $name, $image, $desc, $calories, $recommendTime);
-        $facadeNewActivity = new facadeNewActivity($newActivity);
-        $facadeNewActivity->processNewActivity();
+    if ($imageExist == false) {
+        $imageDirectory = "noimage.png";
+        $image = base64_encode(file_get_contents($imageDirectory));
+//  echo '<img src="data:image/jpeg;base64,'.$imageData.'"/>';
     }
+    $newActivity = new activity("", $name, $image, $desc, $calories, $recommendTime);
+    $facadeNewActivity = new facadeNewActivity($newActivity);
+    $result = $facadeNewActivity->processNewActivity();
+    $pathRedict = "activityList.php";
+    if ($result > 0) {
+        $message = "New Activity was created";
+    } else {
+        $message = "Problem occur during insert new activity";
+    }
+    $cf->messageAndRedict($message, $pathRedict);
 }
-else{
-    $message = "name cannot contain funny character and number";
-    $cf->messageAndRedict($message, "activityList.php");
-    
-}
+
 
 
