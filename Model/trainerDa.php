@@ -79,10 +79,43 @@ class trainerDa {
         }
     }
 
+    public function trainerLogin($email, $password) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getTrainerLogin(?,?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $email);
+        $stmt->bindParam(2, $password);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function updateTrainerPassword($email, $password) {
+        $conn = Connection::getInstance();
+        $sqlUpdated = "call updateTrainerPassword(?,?)";
+        $stmt = $conn->getDb()->prepare($sqlUpdated);
+        $stmt->bindParam(1, $email);
+        $stmt->bindParam(2, $password);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new trainerDa();
 //$password = 123456;
-//$trainer = new trainer("Marry", "setapak", 1, "2018/8/8", "Marry@hotmail.com", 2, "dragon ball");
-//$result = $da->registerNewTrainer($trainer, $password);
+//$email = "eugence966@hotmail.com";
+////$trainer = new trainer("Marry", "setapak", 1, "2018/8/8", "Marry@hotmail.com", 2, "dragon ball");
+//$result = $da->updateTrainerPassword("123.com", "123456");
 //echo $result;

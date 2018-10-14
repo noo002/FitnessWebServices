@@ -60,7 +60,6 @@ function studentDetail(id) {
             
         }
     });
-    
 };
 function edit(id) {
     

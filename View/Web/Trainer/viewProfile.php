@@ -6,39 +6,27 @@
                 <h4 class="modal-title">My Profile</h4>
             </div>
             <div class="modal-body">
-                <?php  
-                    $query = $con->prepare("SELECT * FROM trainer WHERE id =?");
-                    $query->bind_param('i',$myId);
-                    if(!$query->execute()) echo $query->error;
-                    $result = $query->get_result()->fetch_assoc();
-                    
-                ?>
+              
                 <table width="100%">
                     <tr>
                         <td>Name</td>
-                        <td><?php echo $result['name'];?></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Gender</td>
-                        <td><?php 
-                                   $gender = 'Male';
-                                  if($result['gender']==1) {
-                                      $gender='Female';
-                                  }
-                                  echo $gender;
-                        ?></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td><?php echo $result['email'];?></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Certificate</td>
-                        <td><?php echo $result['certificate'];?></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Year of experience</td>
-                        <td><?php echo $result['experience'];?> Year</td>
+                        <td> Year</td>
                     </tr>
                 </table>
             </div>

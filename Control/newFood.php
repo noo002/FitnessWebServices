@@ -18,7 +18,6 @@ $cf = new commonFunction();
 if (empty($barcode)) {
     $barcode = 0;
 }
-$path = "foodList.php";
 if (is_numeric($calories) && !empty($calories) && !empty($fat) && is_numeric($fat) && !empty($protein) && is_numeric($protein) && !empty($carbo) && is_numeric($carbo) && is_numeric($measurement) && !empty($measurement) && !empty($foodType)) {
     $food = new food("", $foodName, $foodType, $barcode, $protein, $calories, $fat, $carbo, $measurement);
     $facadeNewFood = new facadeNewFood($food);

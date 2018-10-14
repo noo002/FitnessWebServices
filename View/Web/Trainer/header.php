@@ -1,25 +1,6 @@
 <?php
     session_start();
-    function logout(){
-       session_destroy();
-       header("Location: ../home.php");
-    }
-    if (isset($_GET['logout'])){
-      logout();
-    } 
-    if(empty($_SESSION)){
-        header("Location: ../home.php");
-    } 
-    else{
-        $myEmail = $_SESSION['login'];
-        require_once('../../Connection.php');
-        
-        $query = $con->prepare("SELECT id FROM trainer WHERE email = ?");
-        $query->bind_param('s',$myEmail);
-        if(!$query->execute()) echo $query->error;
-        $result = $query->get_result()->fetch_assoc();
-        $myId = $result['id'];
-    }
+    
     require_once 'viewProfile.php';
     require_once 'editProfile.php';
     require_once 'changePassword.php';
@@ -71,7 +52,7 @@
                 <li><a href="createGoal.php">Goal</a></li>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $myEmail ?><b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">eugence966@hotmail.com<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                                 <li><a href="#" onclick="viewProfile()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
                                  <li><a href="#" onclick="editProfile()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-pencil"></span> Edit Profile</a></li>

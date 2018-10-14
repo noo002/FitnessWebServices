@@ -3,7 +3,8 @@
 require_once 'smtp/PHPMailer.php';
 require_once 'smtp/Exception.php';
 require_once 'smtp/SMTP.php';
-require_once '../Control/CommonFunction.php';
+
+//require_once '../Control/CommonFunction.php';
 
 class email {
 
@@ -31,6 +32,7 @@ class email {
     }
 
     public function sendEmail() {
+        $result = false;
         if ($this->checkEmailFormat() == true) {
             $smtp = new PHPMailer\PHPMailer\PHPMailer();
             $smtp->isSMTP();
@@ -45,20 +47,14 @@ class email {
             $smtp->Subject = $this->subject;
             $smtp->Body = $this->body;
             $smtp->addAddress($this->to);
-            $cf = new commonFunction();
-            $path = "../View/Web/home.php";
+            //       $path = "../View/Web/home.php";
             if (!$smtp->send()) {
                 $message = 'Mailer Error: ' . $smtp->ErrorInfo;
             } else {
-                $message = "Please check your email";
-                $cf->message($message);
+                $result = true;
             }
-        } else {
-            $cf = new commonFunction();
-            $message = "Email are not validated";
-            $cf->message($message);
-            
         }
+        return $result;
     }
 
 }

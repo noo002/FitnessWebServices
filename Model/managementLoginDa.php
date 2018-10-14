@@ -159,5 +159,5 @@ class managementLoginDa {
 }
 
 //$da = new managementLoginDa();
-//$result = $da->updateManagementProfile("eugence966@hotmail.com", "Heng Hui Jing", 1);
+//$result = $da->updateManagementPassword("eugence966@hotmail.com", "123456");
 //echo $result;

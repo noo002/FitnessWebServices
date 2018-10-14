@@ -23,11 +23,18 @@ if ($result == true) {
             . "This is the computer generated email, no reply to it thank you,";
 
     $smtpEmail = new email($host, $username, $password, $from, $to, $subject, $body);
-    $smtpEmail->sendEmail();
-    $result = $managementDa->updateManagementPassword($email, $code);
+    $result = $smtpEmail->sendEmail();
+    $result1 = $managementDa->updateManagementPassword($email, $code);
     $cf = new commonFunction();
     $path = "../View/Web/home.php";
-    $cf->messageAndRedict($message, $path);
+
+    if ($result == true && $result1 == 1) {
+        $message = "please check your email";
+        $cf->messageAndRedict($message, $path);
+    } else {
+        $message = "problem occur";
+        $cf->messageAndRedict($message, $path);
+    }
 } else {
     $cf = new commonFunction();
     $message = "Email are invalid";

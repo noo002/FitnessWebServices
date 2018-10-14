@@ -7,26 +7,13 @@
             </div>
             <div class="modal-body">
                 <script>
-                    function checkPass(textbox) {
-                        var pass = document.getElementById("password").value;
-                        if(textbox.value !=pass) {
-                            textbox.setCustomValidity('Password Must be Matching.');
-                        }
-                        else{
-                            textbox.setCustomValidity('');
-                        }
-                    };
+
                 </script>
-                <?php  
-                    $query = $con->prepare("SELECT password FROM trainer WHERE id =?");
-                    $query->bind_param('i',$myId);
-                    if(!$query->execute()) echo $query->error;
-                    $result = $query->get_result()->fetch_assoc();
-                ?>
-                <form action="<?php  echo $_SERVER['PHP_SELF']?>" method="post">
+              
+                <form action="" method="post">
                     <div class="form-group">
                         <label for="name"> Current Password</label>
-                        <input type="password"  name="password" maxlength="20" minlength="6" pattern="<?php echo$result['password']?>" title="Current Password not match" class="form-control" required/>
+                        <input type="password"  name="password" maxlength="20" minlength="6" pattern="" title="Current Password not match" class="form-control" required/>
                     </div>
                     <div class="form-group">
                         <label for="name"> New Password</label>
@@ -42,13 +29,3 @@
         </div>
     </div>
 </div>
-<?php
-    if(isset($_POST["changePass"])) {
-        $pass = $_POST['newPassword'];
-        $query = $con->prepare("UPDATE trainer SET password =? WHERE id =?");
-        $query->bind_param('si',$pass,$myId);
-        if(!$query->execute()) echo $query->error;
-        echo "<script type='text/javascript'>alert('Updated Successful');</script>";
-        echo "<meta http-equiv='refresh' content='0'>";
-    }
-?>

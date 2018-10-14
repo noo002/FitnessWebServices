@@ -8,14 +8,14 @@
       <h4 class="modal-title">Trainer Login</h4>
     </div>
     <div class="modal-body">
-        <form onsubmit="return trainerLogin()">
+        <form method="post" action="../../Control/Trainer/trainerLogin.php">
            <div class="form-group">
                 <label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-                <input type="email" maxlength="255" class="form-control" name="trainerEmail" id="trainerEmail" placeholder="Enter email" required/>
+                <input type="email" maxlength="255" class="form-control" name="email" id="trainerEmail" placeholder="Enter email" required/>
             </div>
             <div class="form-group">
                 <label for="pass"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                <input type="password" maxlength="20" minlength="6" pattern="[a-zA-Z0-9-]+" title="No special symbol allow" class="form-control" name="trainerPassword" id="trainerPassword" placeholder="Enter password" required/>
+                <input type="password" maxlength="20" minlength="6" pattern="[a-zA-Z0-9-]+" title="No special symbol allow" class="form-control" name="password" id="trainerPassword" placeholder="Enter password" required/>
             </div>
         <button type="submit" id="loginTrainer" name="loginTrainer" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
     </form>
