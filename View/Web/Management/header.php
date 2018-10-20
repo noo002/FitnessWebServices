@@ -14,9 +14,7 @@ require_once '../../../Model/trainee.php';
 require_once '../../../Control/CommonFunction.php';
 
 
-$traineeDa = new traineeDa();
-$AllTrainee = $traineeDa->getAllTrainee();
-$_SESSION['allTrainee'] = $AllTrainee;
+
 $managementEmail = $_SESSION['managementEmail'];
 if (empty($managementEmail)) {
     $message = "please login first before you access to the system";
@@ -67,7 +65,7 @@ if (empty($managementEmail)) {
                 <h2>Fitness Companion</h2>
                 <ul class="nav nav-tabs">
                     <li ><a href="../../../Control/trainerList.php">Trainer</a></li>
-                    <li class="register"><a href="studentList.php">Student</a></li>
+                    <li class="register"><a href="../../../Control/traineeList.php">Student</a></li>
                     <li class="register"><a href="../../../Control/managementList.php">Management</a></li>
                     <li><a href="../../../Control/foodList.php">Food Nutrient</a></li>
                     <li><a href="../../../Control/activityList.php">Activity</a></li>

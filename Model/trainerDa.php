@@ -26,6 +26,7 @@ class trainerDa {
             $trainerArray = array();
             foreach ($stmt->fetchAll() as $row) {
                 $trainer = new trainer($row['name'], $row['address'], $row['gender'], $row['birthdate'], $row['email'], $row['experience'], $row['certificate']);
+                $trainer->setId($row['trainerId']);
                 array_push($trainerArray, $trainer);
             }
             return $trainerArray;

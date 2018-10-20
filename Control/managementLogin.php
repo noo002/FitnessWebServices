@@ -41,7 +41,7 @@ if (!empty($managementEmail) && !empty($managementPassword)) {
         $_SESSION['managementEmail'] = $managementEmail;
         $management = $managementDa->getManagementDetail($managementEmail, $managementPassword);
         $_SESSION['managementDetail']  = $management;
-        $path = "../View/Web/Management/studentList.php";
+        $path = "trainerList.php";
         $cf->messageAndRedict("Welcome", $path);
     }
 }

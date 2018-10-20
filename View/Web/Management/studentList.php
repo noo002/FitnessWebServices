@@ -1,5 +1,7 @@
 <?php
 
+
+require_once '../../../Model/trainee.php';
 require_once '../../../Model/Management.php';
 require_once 'header.php';
 

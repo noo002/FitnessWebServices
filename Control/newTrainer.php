@@ -25,11 +25,11 @@ if ($cf->checkEmailFormat($email) == true) {
         $year = $_POST['year'];
         $address = $_POST['address'];
         $birthdate = $_POST['birthdate'];
-        if (!empty($name) && !empty($gender) && !empty($cert) && !empty($year) && !empty($address) && !empty($birthdate)) {
+        if (!empty($name) && !empty($gender) && !empty($cert) && !empty($year) && !empty($address) && !empty($birthdate) && year >= 0) {
             $trainer = new trainer($name, $address, $gender, $birthdate, $email, $year, $cert);
 
             $trainerPassword = random_code(6);
-            strtoupper($trainerPassword);
+           $trainerPassword =  strtoupper($trainerPassword);
 
             $result = $trainerDa->registerNewTrainer($trainer, $trainerPassword);
             if ($result > 0) {
@@ -56,6 +56,8 @@ if ($cf->checkEmailFormat($email) == true) {
                 $message = "Problem occur during trainer registration";
                 $cf->messageAndRedict($message, $path);
             }
+        }else{
+            echo "something wrong";
         }
     } else {
         $message = "Email have used";
