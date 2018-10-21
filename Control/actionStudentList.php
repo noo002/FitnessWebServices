@@ -5,6 +5,7 @@ $cf = new commonFunction();
 require_once '../Model/trainer.php';
 require_once '../Model/trainee.php';
 require_once '../Model/traineeDa.php';
+require_once '../Model/trainerDa.php';
 
 if (isset($_POST['studentList'])) {
     $studentList = $_POST['studentList'];
@@ -17,22 +18,25 @@ if (isset($_POST['studentList'])) {
     }
     $traineeDa = new traineeDa();
     $traineeListByTrainer = $traineeDa->getTraineeListByTrainer($studentList);
-    if(empty($traineeListByTrainer)){
-        
-       $message = "No student Handled by ".$_SESSION['trainerList'][$_SESSION['studentListValue']]->name;
-       $path ="trainerList.php";
-       $cf->messageAndRedict($message, $path);
-    }
-    else{
+    if (empty($traineeListByTrainer)) {
+
+        $message = "No student Handled by " . $_SESSION['trainerList'][$_SESSION['studentListValue']]->name;
+        $path = "trainerList.php";
+        $cf->messageAndRedict($message, $path);
+    } else {
         $_SESSION['traineeListByTrainer'] = $traineeListByTrainer;
-         $path = "../View/Web/Management/TraineeHandledByTrainer.php";
-         $cf->redicrect($path);
+        $path = "../View/Web/Management/TraineeHandledByTrainer.php";
+        $cf->redicrect($path);
     }
-    
 } else if (isset($_POST['edit'])) {
     $edit = $_POST['edit'];
     echo " This is for editing";
 } else if (isset($_POST['activation'])) {
-    $activation = $_POST['activation'];
-    echo " this is for activation";
+    $trainerId = $_POST['activation'];
+    $trainerDa = new trainerDa();
+    $result = $trainerDa->updatetrainerActivation($trainerId);
+    $message = "This trainer will no longger can access to system";
+    $cf = new commonFunction();
+    $path = "trainerList.php";
+    $cf->messageAndRedict($message, $path);
 }

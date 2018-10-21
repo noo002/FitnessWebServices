@@ -14,7 +14,7 @@
 class trainer {
 
     private $name, $address, $gender, $birthdate, $email, $experience, $certificate;
-    private $id;
+    private $id, $status;
 
     function __construct($name, $address, $gender, $birthdate, $email, $experience, $certificate) {
         $this->name = $name;
@@ -24,6 +24,10 @@ class trainer {
         $this->email = $email;
         $this->experience = $experience;
         $this->certificate = $certificate;
+    }
+
+    function setStatus($status) {
+        $this->status = $status;
     }
 
     function setId($id) {

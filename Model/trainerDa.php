@@ -27,6 +27,7 @@ class trainerDa {
             foreach ($stmt->fetchAll() as $row) {
                 $trainer = new trainer($row['name'], $row['address'], $row['gender'], $row['birthdate'], $row['email'], $row['experience'], $row['certificate']);
                 $trainer->setId($row['trainerId']);
+                $trainer->setStatus($row['status']);
                 array_push($trainerArray, $trainer);
             }
             return $trainerArray;
@@ -112,9 +113,51 @@ class trainerDa {
         }
     }
 
+    private function getTrainerActivation($trainerId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getTrainerId(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $trainerId);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $activation = $row;
+                break;
+            }
+            if ($activation == 1) {
+                $result = 0;
+            } else {
+                $result = 1;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function updatetrainerActivation($trainerId) {
+        $activation = $this->getTrainerActivation($trainerId);
+        $conn = Connection::getInstance();
+        $sqlSelected = "call updateTrainerActivation(?,?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $trainerId);
+        $stmt->bindParam(2, $activation);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new trainerDa();
+//$result = $da->updatetrainerActivation(1);
 //$password = 123456;
 //$email = "eugence966@hotmail.com";
 ////$trainer = new trainer("Marry", "setapak", 1, "2018/8/8", "Marry@hotmail.com", 2, "dragon ball");
