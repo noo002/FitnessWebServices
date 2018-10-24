@@ -1,8 +1,10 @@
 <script src="../js/food.js" type="text/javascript"></script>
 
-<p style='text-align: center'>
-    <button onclick="newFood()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; Insert New Food</button>
-</p>
+
+<p>
+    <b>Fitness Companion - Food List </b>
+    <button style="float:right" onclick="newFood()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; Insert New Food</button>
+</p><br/>
 
 
 <table id="foodTable">

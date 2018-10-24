@@ -1,4 +1,4 @@
-<?php require_once 'header.php';?>
+<?php require_once 'header.php'; ?>
 <style>
     .tab-content{
         width: 80%;
@@ -10,7 +10,6 @@
 </section>
 
 <h1>What is FITNESS?</h1>
-			
 <p>
     Fitness does not only refer to being physically fit, but also refers to a person’s mental state as well. 
     If a person is physically fit, but mentally unwell or troubled, he or she will not be able to function optimally. 
@@ -39,4 +38,4 @@
 
 </p>
 
-<?php require_once 'footer.php';?>
+<?php require_once 'footer.php'; ?>

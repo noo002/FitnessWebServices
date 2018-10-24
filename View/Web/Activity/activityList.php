@@ -1,8 +1,10 @@
 <script src="../js/activity.js" type="text/javascript"></script>
 
-<p style="text-align:center ">
-    <button onclick="newActivity()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; Insert New Activity</button>
+<p>
+    <b>Fitness Companion - Activity List </b>
+    <button style="float:right" onclick="newActivity()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; Insert New Activity</button>
 </p>
+<br/>
 
 <table id="myTable" >
     <thead>

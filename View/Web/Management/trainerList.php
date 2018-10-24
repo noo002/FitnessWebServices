@@ -37,7 +37,7 @@ require_once 'header.php';
                 echo "<td>$key->experience</td>";
                 $active = "<button class='btn btn-primary btn-xs' name='activation' value='$key->id'><span class='glyphicon glyphicon-ok'></span>Active</button></td>";
                 $inactive = "<button class='btn btn-danger btn-xs' name='activation' value='$key->id'><span class='glyphicon glyphicon-remove'></span>Inactive</button></td>";
-                $studentList = '<td class="text-center"><button class="btn btn-primary btn-xs" name="studentList" value='.$key->id.'><span class="glyphicon glyphicon-info-sign"></span> Student List</button>&nbsp<button class="btn btn-success btn-xs" name="edit" value="' . $key->id . '"><span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp; ';
+                $studentList = '<td class="text-center"><button class="btn btn-primary btn-xs" name="studentList" value='.$key->id.'><span class="glyphicon glyphicon-info-sign"></span> Student List</button>&nbsp; ';
                 if ($key->status == 1) {
                     echo "<td>Active </td>";
                     echo $studentList;

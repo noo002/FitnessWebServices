@@ -28,15 +28,17 @@ if (isset($_POST['studentList'])) {
         $path = "../View/Web/Management/TraineeHandledByTrainer.php";
         $cf->redicrect($path);
     }
-} else if (isset($_POST['edit'])) {
-    $edit = $_POST['edit'];
-    echo " This is for editing";
 } else if (isset($_POST['activation'])) {
     $trainerId = $_POST['activation'];
     $trainerDa = new trainerDa();
     $result = $trainerDa->updatetrainerActivation($trainerId);
-    $message = "This trainer will no longger can access to system";
+    $message = "The status of trainer was changed";
     $cf = new commonFunction();
     $path = "trainerList.php";
+    $cf->messageAndRedict($message, $path);
+} else {
+    $cf = new commonFunction();
+    $path = "trainerList.php";
+    $message = "Problem occur, please contact IT support for recovery";
     $cf->messageAndRedict($message, $path);
 }

@@ -143,11 +143,7 @@ class trainerDa {
         $stmt->bindParam(1, $trainerId);
         $stmt->bindParam(2, $activation);
         try {
-            $stmt->execute();
-            foreach ($stmt->fetch() as $row) {
-                $result = $row;
-                break;
-            }
+            $result = $stmt->execute();
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();

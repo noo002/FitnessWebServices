@@ -156,8 +156,45 @@ class managementLoginDa {
         }
     }
 
+    private function getActivationManagement($managementId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getActivationManagement(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $managementId);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            if ($result == 1) {
+                $result = 0;
+            } else if ($result == 0) {
+                $result = 1;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function updateActivationManagement($managementId) {
+        $activation = $this->getActivationManagement($managementId);
+        $sqlUpdated = "call updateActivationManagement(?,?)";
+        $conn = Connection::getInstance();
+        $stmt = $conn->getDb()->prepare($sqlUpdated);
+        $stmt->bindParam(1, $managementId);
+        $stmt->bindParam(2, $activation);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new managementLoginDa();
-//$result = $da->updateManagementPassword("eugence966@hotmail.com", "123456");
+//$result = $da->updateActivationManagement(1);
 //echo $result;
