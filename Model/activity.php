@@ -3,6 +3,7 @@
 class activity {
 
     private $activityId, $name, $image, $description, $caloriesBurnPerMin, $suggestedDuration;
+    private $status;
 
     function __construct($activityId, $name, $image, $description, $caloriesBurnPerMin, $suggestedDuration) {
         $this->activityId = $activityId;
@@ -15,6 +16,10 @@ class activity {
 
     function setImage($image) {
         $this->image = $image;
+    }
+
+    function setStatus($status) {
+        $this->status = $status;
     }
 
     public function __get($property) {

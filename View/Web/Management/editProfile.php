@@ -27,8 +27,8 @@
                     </div>
                     <div class="form-group">
                         <label for="gender"></span> Gender</label><br/>
-                        <label><input type="radio" id="gender" value="1" name="gender" />Male</label>&nbsp;&nbsp;
-                        <label><input type="radio" id="gender" value="2" name="gender"/>Female</label>
+                        <label><input type="radio" id="male" value="1" name="gender" />Male</label>&nbsp;&nbsp;
+                        <label><input type="radio" id="female" value="2" name="gender"/>Female</label>
                     </div> 
                     <button type="submit" name="update" class="btn btn-success btn-block"><span class="glyphicon glyphicon-pencil"></span> Update</button>
                 </form>

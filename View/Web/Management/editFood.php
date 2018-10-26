@@ -21,30 +21,30 @@
             <form action="../../../Control/editFood.php" method="post">
                 <table class="table table-bordered table-striped" align="center">
                     <tr>
-                        <td>Food Name</td>
+                        <td><b>Food Name</b></td>
                         <td>
                             <input type="hidden" name="foodId" value=" <?php echo $foodDetail->foodId ?>  " />
                             <input type="text" name="foodName" required placeholder="Enter food name" class="form-control" value="<?php echo $foodDetail->name ?>" />
                         </td>
                     </tr>            
                     <tr>
-                        <td>Calories(Cal)</td>
+                        <td><b>Calories(Cal)</b></td>
                         <td><input type="number" min="0"  class="form-control" required placeholder="Enter calcories" name="calories" value="<?php echo $foodDetail->calories ?>" /></td>
                     </tr>             
                     <tr>
-                        <td>Fat(g)</td>
+                        <td><b>Fat(g)</b></td>
                         <td><input class="form-control" min="0"  required placeholder="Enter Fat in g" type="number" name="fat" value="<?php echo $foodDetail->fat ?>" /></td>
                     </tr>             
                     <tr>
-                        <td>Protein(g)</td>
+                        <td><b>Protein(g)</b></td>
                         <td><input class="form-control" min="0"  type="number" name="protein" value="<?php echo $foodDetail->protein ?>" /></td>
                     </tr>            
                     <tr>
-                        <td>Carbohydrate(g)</td>
+                        <td><b>Carbohydrate(g)</b></td>
                         <td><input class="form-control" min="0"  type="number" required placeholder="Enter Carbohydrate" name="carbo" value="<?php echo $foodDetail->carbohydrate ?>" /></td>
                     </tr>
                     <tr>
-                        <td>Food Type</td>
+                        <td><b>Food Type</b></td>
                         <td>
                             <select name="type" class="form-control">
 
@@ -62,7 +62,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Measurement</td>
+                        <td><b>Measurement</b></td>
                         <td>
                             <select name="measurement" class="form-control">
                                 <?php
@@ -80,7 +80,7 @@
                     </tr>
 
                     <tr>
-                        <td>Barcode</td>
+                        <td><b>Barcode</b></td>
                         <td><input class="form-control" placeholder="Enter barcode" type="number" name="barcode" value="<?php echo $foodDetail->barcode ?>" /></td>
                     </tr>
                     <tr>
