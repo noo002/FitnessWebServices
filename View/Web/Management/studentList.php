@@ -38,7 +38,7 @@ require_once '../../../Control/CommonFunction.php';
         echo "<td>$key->status</td>";
         echo '<td class="text-center">'
         . '<a class="btn btn-primary btn-xs"  href="#"><span class="glyphicon glyphicon-info-sign"></span> Detail</a> &nbsp '
-        . '<a class="btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-pencil"></span> Assign Trainer</a> </td>';
+        . '<a class="btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-pencil"></span> Assign Plan</a> </td>';
         echo '</tr>';
         echo "</tr>";
     }
