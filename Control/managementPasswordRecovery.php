@@ -24,8 +24,10 @@ if ($result == true) {
 
     $smtpEmail = new email($host, $username, $password, $from, $to, $subject, $body);
     $result = $smtpEmail->sendEmail();
-    $result1 = $managementDa->updateManagementPassword($email, $code);
     $cf = new commonFunction();
+    $code = $cf->passwordEncryption($code);
+    $result1 = $managementDa->updateManagementPassword($email, $code);
+
     $path = "../View/Web/home.php";
 
     if ($result == true && $result1 == 1) {

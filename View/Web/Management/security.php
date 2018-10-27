@@ -15,7 +15,10 @@ and open the template in the editor.
         require_once 'header.php';
         ?>
 
-        <p>ad</p>
+        <div id="content">
+            
+
+        </div>
 
 
 

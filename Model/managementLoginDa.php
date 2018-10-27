@@ -54,6 +54,23 @@ class managementLoginDa {
         }
     }
 
+    public function getManagementId($email) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getManagementId(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $email);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
     public function updateManagementPassword($email, $password) {
         $conn = Connection::getInstance();
         $sqlSelected = "call  updateManagementPassword(?,?)";
@@ -193,8 +210,38 @@ class managementLoginDa {
         }
     }
 
+    public function deactivateManagement($managementId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call deactivateManagement(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $managementId);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getManagementStatus($managementId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getManagementStatus(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $managementId);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new managementLoginDa();
-//$result = $da->updateActivationManagement(1);
+//$result = $da->getManagementId("eugence966@hotmail.com");
 //echo $result;
