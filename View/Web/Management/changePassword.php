@@ -31,11 +31,11 @@
                     </div>
                     <div class="form-group">
                         <label for="name"> New Password</label>
-                        <input type="password" id="newPassword" name="newPassword" maxlength="20" minlength="6" pattern="[A-Za-z1-9]{3,255}" title="Not allow special symbol & number" class="form-control" required/>
+                        <input type="password" id="newPassword" name="newPassword" maxlength="20" minlength="6"  class="form-control" required/>
                     </div>
                     <div class="form-group">
                         <label for="name"> Confirm password</label>
-                        <input type="password"  name="confirmPassword" id="confirmPassword" maxlength="20" minlength="6" pattern="[A-Za-z1-9]{3,255}" title="Not allow special symbol & number" class="form-control" required/>
+                        <input type="password"  name="confirmPassword" id="confirmPassword" maxlength="20" minlength="6"  class="form-control" required/>
                     </div>
                     <button type="submit" name="changePass" class="btn btn-success btn-block"><span class="glyphicon glyphicon-pencil"></span> Update</button>
                 </form>

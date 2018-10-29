@@ -9,33 +9,39 @@ $email = $_POST['managementEmailPass'];
 $managementDa = new managementLoginDa();
 $result = $managementDa->checkEmailExist($email);
 if ($result == true) {
-    $host = "localhost";
-    $username = "FitnessApplication2018@gmail.com";
-    $password = "taruc2018";
-    $from = "FitnessApplication2018@gmail.com";
-    $to = $email;
-    $subject = "Your new Password";
-    $code = random_code(6);
-    strtoupper($code);
-    $body = "Your new password is $code.\n"
-            . "please enter this new password into the System.\n"
-            . "Please change your password once you access it.\n"
-            . "This is the computer generated email, no reply to it thank you,";
+    $managementId = $managementDa->getManagementId($email);
+    $status = $managementDa->getManagementStatus($managementId);
+    if ($status == 1 || $status == 3) {
+        $host = "localhost";
+        $username = "FitnessApplication2018@gmail.com";
+        $password = "taruc2018";
+        $from = "FitnessApplication2018@gmail.com";
+        $to = $email;
+        $subject = "Your new Password";
+        $code = random_code(6);
+        $code = strtoupper($code);
+        $body = "Your new password is $code.\n"
+                . "please enter this new password into the System.\n"
+                . "Please change your password once you access it.\n"
+                . "This is the computer generated email, no reply to it thank you,";
 
-    $smtpEmail = new email($host, $username, $password, $from, $to, $subject, $body);
-    $result = $smtpEmail->sendEmail();
-    $cf = new commonFunction();
-    $code = $cf->passwordEncryption($code);
-    $result1 = $managementDa->updateManagementPassword($email, $code);
+        $smtpEmail = new email($host, $username, $password, $from, $to, $subject, $body);
+        $result = $smtpEmail->sendEmail();
+        $cf = new commonFunction();
+        $code = $cf->passwordEncryption($code);
+        $result1 = $managementDa->updateManagementPassword($email, $code);
+        if($status == 3){
+            $managementDa->unlockManagementStatus($managementId);
+        }
+        $path = "../View/Web/home.php";
 
-    $path = "../View/Web/home.php";
-
-    if ($result == true && $result1 == 1) {
-        $message = "please check your email";
-        $cf->messageAndRedict($message, $path);
-    } else {
-        $message = "problem occur";
-        $cf->messageAndRedict($message, $path);
+        if ($result == true && $result1 == 1) {
+            $message = "please check your email";
+            $cf->messageAndRedict($message, $path);
+        } else {
+            $message = "problem occur";
+            $cf->messageAndRedict($message, $path);
+        }
     }
 } else {
     $cf = new commonFunction();

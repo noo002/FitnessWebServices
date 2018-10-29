@@ -5,7 +5,7 @@ require_once 'header.php';
 <script src="../js/management.js" type="text/javascript"></script>
 <p>
     <b>Fitness Companion - Management List </b>
-    <button style="float:right" onclick="newManagement()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp;Insert New Management</button>
+    <a href="newManagement.php"><button style="float:right" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp;Insert New Management</button></a>
 
 </p>
 <br/>
@@ -46,5 +46,5 @@ require_once 'header.php';
 </form>
 <?php
 require_once 'editManagement.php';
-require_once 'newManagement.php';
+//require_once 'newManagement.php';
 require_once '../footer.php';

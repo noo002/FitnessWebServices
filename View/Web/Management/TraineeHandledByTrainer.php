@@ -37,7 +37,7 @@ and open the template in the editor.
             <b><a href="../../../Control/trainerList.php">Trainer List </a> - Trainee under by <?php echo $_SESSION['trainerList'][$studentListValue]->name ?> </b>
         </p><br/>
         <div>
-            <form method="post" action="">
+            <form method="post" action="../../../Control/studentDetail.php">
                 <table id="traineeTable" class="dataTable">
                     <thead>
                     <th>Name</th>
@@ -61,7 +61,7 @@ and open the template in the editor.
                         }
                         echo "<td>" . $row['age'] . "</td>";
                         echo "<td>" . $row['email'] . "</td>";
-                        echo "<td><button value='".$row['traineeId']."' class='btn btn-success btn-xs'>View Detail</button></td>";
+                        echo "<td><button value='" . $row['traineeId'] . "' name='detail' class='btn btn-success btn-xs'>View Detail</button></td>";
                         echo "</tr>";
                     }
                     ?>

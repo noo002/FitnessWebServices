@@ -20,7 +20,8 @@ if ($cf->checkEmailFormat($email) == true) {
             $management = new Management("", $name, $gender, $address, $email, "");
             $newPassword = strtoupper($cf->random_code(6));
             $managementDa = new managementLoginDa();
-            $result = $managementDa->registerNewManagement($management, $newPassword);
+            $encryptedPassword = $cf->passwordEncryption($newPassword);
+            $result = $managementDa->registerNewManagement($management, $encryptedPassword);
             if ($result > 0) {
                 $host = "localhost";
                 $username = "FitnessApplication2018@gmail.com";

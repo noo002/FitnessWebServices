@@ -3,7 +3,7 @@
 
 <p>
     <b>Fitness Companion - Food List </b>
-    <button style="float:right" onclick="newFood()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; Insert New Food</button>
+    <a href="../Management/newFood.php"><button style="float:right"  class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; Insert New Food</button></a>
 </p><br/>
 
 <form method="post" action="../../../Control/actionFood.php">
@@ -56,6 +56,6 @@
 </form>
 <?php
 //require_once 'editFood.php';
-require_once 'newFood.php';
+//require_once 'newFood.php';
 require_once '../footer.php';
 

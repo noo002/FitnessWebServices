@@ -54,7 +54,7 @@ and open the template in the editor.
                     <td><input type="number" min="1" required placeholder="Enter callories burn per minutes" class="form-control" name="calories" value="<?php echo $activityDetail->caloriesBurnPerMin ?>" /></td>
                 </tr>
                 <tr>
-                    <th>Recommend time</th>
+                    <th>Recommend Duration (minutes) </th>
                     <td><input type="number" min="1" required placeholder="Enter Recommend time in minutes" class="form-control" name="time" value="<?php echo $activityDetail->suggestedDuration ?>" /></td>
                 </tr>
                 <tr>

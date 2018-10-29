@@ -33,8 +33,10 @@
                         <label for="name">Food Type </label>
                         <select name="foodType" class="form-control">
                             <option>Rice</option>
-                            <option>Chicken</option>. <option>Drink</option>
-                            <option>Fish</option> <option>Fruit</option>
+                            <option>Chicken</option>
+                            <option>Drink</option>
+                            <option>Fish</option>
+                            <option>Fruit</option>
                         </select>
                     </div>
                     <div class="form-group">

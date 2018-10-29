@@ -13,38 +13,40 @@ require_once '../../../Control/CommonFunction.php';
     <b>Fitness Companion - Student List </b>
 
 </p><br/>
-<table id="studentTable">
-    <thead>
-    <th>Name</th>
-    <th>Gender</th>
-    <th>Date of Birth(Y-M-D)</th>
-    <th>Email</th>
-    <th>Status</th>
-    <th>Action</th>
-</thead>
-<tbody>
-    <?php
-    $allTrainee = $_SESSION['allTrainee'];
-    foreach ($allTrainee as $row => $key) {
-        echo "<tr>";
-        echo "<td>$key->name</td>";
-        if ($key->gender == 1) {
-            echo "<td>Male</td>";
-        } else {
-            echo "<td>Female</td>";
-        }
-        echo "<td>$key->birthdate</td>";
-        echo "<td>$key->email</td>";
-        echo "<td>$key->status</td>";
-        echo '<td class="text-center">'
-        . '<a class="btn btn-primary btn-xs"  href="#"><span class="glyphicon glyphicon-info-sign"></span> Detail</a> &nbsp '
-        . '<a class="btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-pencil"></span> Assign Plan</a> </td>';
-        echo '</tr>';
-        echo "</tr>";
-    }
-    ?>
-</tbody>
-</table>
+<form method="post" action="../../../Control/studentDetail.php">
+    <table id="studentTable">
+        <thead>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Date of Birth(Y-M-D)</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Action</th>
+        </thead>
+        <tbody>
+            <?php
+            $allTrainee = $_SESSION['allTrainee'];
+            foreach ($allTrainee as $row => $key) {
+                echo "<tr>";
+                echo "<td>$key->name</td>";
+                if ($key->gender == 1) {
+                    echo "<td>Male</td>";
+                } else {
+                    echo "<td>Female</td>";
+                }
+                echo "<td>$key->birthdate</td>";
+                echo "<td>$key->email</td>";
+                echo "<td>$key->status</td>";
+                echo '<td class="text-center">'
+                . '<button name="detail" value="' . $key->traineeId . '" class="btn btn-primary btn-xs"  href="#"><span class="glyphicon glyphicon-info-sign"></span> Detail</button> &nbsp '
+                . '<button name=""assignPlan" value="' . $key->traineeId . '" class="btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-pencil"></span> Assign Plan</button> </td>';
+                echo '</tr>';
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</form>
 </div>   
 <div class="footer">
     <p>Copyright &copy; <a href="#">Fitness Companion</a> 2015-2018  </p>

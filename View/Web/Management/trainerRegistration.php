@@ -12,26 +12,27 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        require_once '../../../Model/Management.php';
         require_once 'header.php';
         ?>
-              <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="/resources/demos/style.css">
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
-            
-            $(function () {
-                $("#datepicker").datepicker({maxDate: new Date, minDate: new Date(1900, 1, 1), 
-                    howButtonPanel: true,
-                    changeMonth: true,
-                    changeYear: true,
-                    showOtherMonths: true,
-                    selectOtherMonths: true,
-                yearRange: "1900: maxDate ",
-                dateFormat : "yy-mm-dd"
-        }
-                );
-            });
+            $(document).ready(function () {
+                $(function () {
+                    $("#datepicker").datepicker({maxDate: new Date, minDate: new Date(1900, 1, 1),
+                        howButtonPanel: true,
+                        changeMonth: true,
+                        changeYear: true,
+                        showOtherMonths: true,
+                        selectOtherMonths: true,
+                        yearRange: "1900: maxDate ",
+                        dateFormat: "yy-mm-dd"
+                    }
+                    );
+                });
+            })
         </script>
         <p>
             <b><a href="../../../Control/trainerList.php">Trainer List </a> - Trainer Registration </b>
@@ -48,15 +49,15 @@ and open the template in the editor.
                         <td><b>Name : </b></td>
                         <td>
                             <input type="text" name="name" value="" maxlength="100" placeholder="Enter Name" required 
-                                   pattern="[A-Za-z ]{10,255}" title="Not allow special symbol & number"class="form-control"
+                                   pattern="[A-Za-z ]{10,255}" title="Not allow special symbol & number and minimum 10 letter"class="form-control"
                                    />
                         </td>
                     </tr>
                     <tr>
                         <td><B>Gender  :</B> </td>
                         <td>
-                            <input type="radio" title="Please specify your gender" required id="male" name="gender" value="1" /><label for="male" title="Please specify your gender">&nbsp;Male</label>
-                            <input type="radio" title="Please specify your gender" id="female" name="gender" value="2" /><label for="female" title="Please specify your gender">&nbsp;Female</label>
+                            <label><input type="radio" name="gender" value="1" />Male</label>&nbsp; 
+                            <label><input type="radio" name="gender" value="2" />Female</label>
                         </td>
                     </tr>
                     <tr>
@@ -75,7 +76,7 @@ and open the template in the editor.
                         <td><input type="text" name="address" value="" maxlength="200" placeholder="Enter your address" required class="form-control" /></td>
                     </tr>
                     <tr>
-                        <td><b>Birthdate</b> </td>
+                        <td><b>Date Of Birth : </b> </td>
                         <td><input type="text" required name="birthdate"  id="datepicker" value="" readonly class="form-control" placeholder="Select your birthdate" /></td>
                     </tr>
                     <tr>

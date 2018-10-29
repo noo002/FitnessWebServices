@@ -1,40 +1,88 @@
-<div class="modal" id="newManagementModal" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">New Management</h4>
-            </div>
-            <div class="modal-body">
-                <form action="../../../Control/newManagement.php" method="post">
-                    <div class="form-group">
-                        <label for="name"></span> Name</label>
-                        <input type="text" maxlength="255" class="form-control" name="name" placeholder="Enter name" required pattern="[A-Za-z ]{3,255}" title="Not allow special symbol & number"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="gender"></span> Gender</label><br/>
-                        <input type="radio" value="1" id="male" name="gender" /><label for="male">Male</label>&nbsp;&nbsp;
-                        <input type="radio" value="2" id="female" name="gender"/><label for="female">Female</label>
-                    </div> 
-                    <div class="form-group">
-                        <label for="email"></span> Email</label>
-                        <input type="text" maxlength="255" id="email" name="email" class="form-control"  placeholder="Enter email" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="email"></span> Address</label>
-                        <input type="text" maxlength="255" name="address" id="address" name="address" class="form-control" placeholder="Enter address" required />
-                    </div> 
-                    <div class="alert alert-info">
-                        <strong>
-                            <ul>
-                                <li>Password will send through the email.</li>
-                                <li>Email cannot change after insert.</li>
-                            </ul>
-                        </strong>
-                    </div>
-                    <button type="submit" name="new" class="btn btn-success btn-block"><span class="glyphicon glyphicon-plus"></span> Add</button>
-                </form>
-            </div>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+
+    </head>
+    <body>
+        <?php
+        require_once '../../../Model/Management.php';
+        require_once 'header.php';
+        ?>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+
+        <p>
+            <b><a href="../../../Control/managementList.php">Management List </a> - Management Registration </b>
+        </p><br/>
+        <div>
+            <form action="../../../Control/newManagement.php" method="post">
+                <table class="table table-bordered table-striped" align="center">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="text-align: center">New Trainer Registration</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td><b>Name : </b></td>
+                        <td>
+                            <input type="text" name="name" value="" maxlength="100" placeholder="Enter Name" required 
+                                   pattern="[A-Za-z ]{10,255}" title="Not allow special symbol & number minimum 10 letter"class="form-control"
+                                   />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><B>Gender  :</B> </td>
+                        <td>
+                            <input type="radio" title="Please specify your gender" required id="male" name="gender" value="1" /><label for="male" title="Please specify your gender">&nbsp;Male</label>
+                            <input type="radio" title="Please specify your gender" id="female" name="gender" value="2" /><label for="female" title="Please specify your gender">&nbsp;Female</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Email :</b></td>
+                        <td>
+                            <input type="email" name="email" value="" required class="form-control" placeholder="Enter Email" maxlength="100"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Address :</b></td>
+                        <td><input type="text" name="address" value="" maxlength="200" placeholder="Enter your address" required class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Submit"class="btn btn-primary btn-xs" />
+                            <input type="reset" value="Reset"  class="btn btn-xs btn-danger delete"/>
+                        </td>
+                    </tr>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"class="alert alert-info">
+                                <strong>
+                                    <ul>
+                                        <li>Password will send through the email.</li>
+                                        <li>Email cannot change after insert.</li>
+                                    </ul>
+                                </strong>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
         </div>
-    </div>
-</div>
+
+
+
+
+        <?php
+        require_once '../footer.php';
+        ?>
+    </body>
+</html>

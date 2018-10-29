@@ -52,6 +52,7 @@ if (!empty($managementEmail) && !empty($managementPassword)) {
             if ($_SESSION['count'] == 3) {
                 if ($managementDa->getManagementStatus($managementId) == 1) {
                     $managementDa->deactivateManagement($managementId);
+                    $managementDa->lockManagementStatus($managementId);
                     $host = "localhost";
                     $username = "FitnessApplication2018@gmail.com";
                     $password = "taruc2018";
@@ -59,8 +60,8 @@ if (!empty($managementEmail) && !empty($managementPassword)) {
                     $to = $managementEmail;
                     $subject = "Deactivated your Account";
                     $body = "Your account have been detected for other people entered wrong password"
-                            . " at least 3 time, for your security purpose, system was deactivated your account"
-                            . " please perform password recovery to reactivate your account and remember"
+                            . " at least 3 time, for your security purpose, system was locked your account"
+                            . " please perform password recovery to release your account and remember"
                             . " change your password";
                     $smtpEmail = new email($host, $username, $password, $from, $to, $subject, $body);
                     $result = $smtpEmail->sendEmail();

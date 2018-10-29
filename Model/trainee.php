@@ -14,6 +14,7 @@
 class trainee {
 
     private $name, $address, $gender, $birthdate, $email, $status;
+    private $traineeId, $image;
 
     function __construct($name, $address, $gender, $birthdate, $email, $status) {
         $this->name = $name;
@@ -22,6 +23,14 @@ class trainee {
         $this->birthdate = $birthdate;
         $this->email = $email;
         $this->status = $status;
+    }
+
+    function setImage($image) {
+        $this->image = $image;
+    }
+
+    function setTraineeId($traineeId) {
+        $this->traineeId = $traineeId;
     }
 
     public function __get($property) {

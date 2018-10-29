@@ -29,9 +29,9 @@ if ($cf->checkEmailFormat($email) == true) {
             $trainer = new trainer($name, $address, $gender, $birthdate, $email, $year, $cert);
 
             $trainerPassword = random_code(6);
-           $trainerPassword =  strtoupper($trainerPassword);
-
-            $result = $trainerDa->registerNewTrainer($trainer, $trainerPassword);
+            $trainerPassword = strtoupper($trainerPassword);
+            $encryptedPassword = $cf->passwordEncryption($trainerPassword);
+            $result = $trainerDa->registerNewTrainer($trainer, $encryptedPassword);
             if ($result > 0) {
                 session_start();
                 unset($_SESSION['trainerList']);
@@ -56,7 +56,7 @@ if ($cf->checkEmailFormat($email) == true) {
                 $message = "Problem occur during trainer registration";
                 $cf->messageAndRedict($message, $path);
             }
-        }else{
+        } else {
             echo "something wrong";
         }
     } else {

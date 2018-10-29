@@ -27,6 +27,7 @@ class traineeDa {
             $stmt->execute();
             foreach ($stmt->fetchAll() as $row) {
                 $trainee = new trainee($row['name'], $row['address'], $row['gender'], $row['birthDate'], $row['email'], $row['status']);
+                $trainee->setTraineeId($row['traineeId']);
                 array_push($traineeArray, $trainee);
             }
             return $traineeArray;
@@ -62,10 +63,26 @@ class traineeDa {
         }
     }
 
+    public function getTraineeDetail($traineeId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getTraineeDetail(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $traineeId);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetchAll() as $row) {
+                $trainee = new trainee($row['name'], $row['address'], $row['gender'], $row['birthDate'], $row['email'], $row['status']);
+                $trainee->setTraineeId($row['traineeId']);
+                $trainee->setImage($row['image']);
+            }
+            return $trainee;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new traineeDa();
-//$result = $da->getTraineeListByTrainer(1);
-//foreach ($result as $row) {
-//    echo $row['age'] . "<br/>";
-//}
+//$result = $da->getTraineeDetail(2);
+//print_r($result);

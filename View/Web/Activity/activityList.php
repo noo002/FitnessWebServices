@@ -2,7 +2,7 @@
 
 <p>
     <b>Fitness Companion - Activity List </b>
-    <button style="float:right" onclick="newActivity()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; Insert New Activity</button>
+    <a href="../Management/newActivity.php"><button style="float:right" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; Insert New Activity</button></a>
 </p>
 <br/>
 <form method="post" action="../../../Control/actionActivity.php" enctype="multipart/form-data">
@@ -54,6 +54,6 @@
     </table>
 </form>
 <?php
-require_once 'newActivity.php';
+//require_once 'newActivity.php';
 //require_once 'editActivity.php';
 require_once '../footer.php';

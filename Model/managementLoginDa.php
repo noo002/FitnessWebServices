@@ -240,8 +240,36 @@ class managementLoginDa {
         }
     }
 
+    public function lockManagementStatus($managementId) {
+        $conn = Connection::getInstance();
+        $lock = 3;
+        $sqlUpdated = "call lockManagementStatus(?,?)";
+        $stmt = $conn->getDb()->prepare($sqlUpdated);
+        $stmt->bindParam(1, $managementId);
+        $stmt->bindParam(2, $lock);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function unlockManagementStatus($managementId) {
+        $conn = Connection::getInstance();
+        $sqlUpdated = "call unlockManagementStatus(?)";
+        $stmt = $conn->getDb()->prepare($sqlUpdated);
+        $stmt->bindParam(1, $managementId);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new managementLoginDa();
-//$result = $da->getManagementId("eugence966@hotmail.com");
+//$result = $da->lockManagementStatus(1);
 //echo $result;
