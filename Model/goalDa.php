@@ -1,7 +1,8 @@
 <?php
 
 require_once 'Connection.php';
-require_once '../Model/goal.php';
+
+//require_once '../Model/goal.php';
 
 class goalDa {
 
@@ -16,7 +17,8 @@ class goalDa {
             foreach ($stmt->fetchAll() as $row) {
                 $result = array(
                     "goalName" => $row['goalName'],
-                    "description" => $row['description']
+                    "description" => $row['description'],
+                    "measurement" => $row['measurement']
                 );
             }
             return $result;
@@ -24,7 +26,6 @@ class goalDa {
             echo $ex->getMessage();
         }
     }
-
 }
 
 //$da = new goalDa();

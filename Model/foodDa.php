@@ -24,6 +24,24 @@ class foodDa {
         }
     }
 
+    public function getAllActiveFood() {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getAllActiveFood()";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        try {
+            $stmt->execute();
+            $f = array();
+            foreach ($stmt->fetchAll() as $row) {
+                $food = new food($row['foodId'], $row['name'], $row['type'], $row['barcode'], $row['protein'], $row['calories'], $row['fat'], $row['carbohydrate'], $row['messurement']);
+                $food->setFoodStatus($row['status']);
+                array_push($f, $food);
+            }
+            return $f;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
     public function registerNewFood($food) {
         $conn = Connection::getInstance();
         $sqlSelected = "call registerNewFood(?,?,?,?,?,?,?,?)";
@@ -136,8 +154,25 @@ class foodDa {
         }
     }
 
+    public function getFoodName($foodId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getFoodName(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1,$foodId);
+        try {
+            $stmt->execute();
+            foreach($stmt->fetch() as $row){
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new foodDa();
-//$result = $da->getFoodDetail(1);
+//echo $result = $da->getFoodName(1);
 //print_r($result);

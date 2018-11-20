@@ -26,6 +26,26 @@ class activityDa {
         }
     }
 
+    public function getAllActiveActivity() {
+        $sqlSelected = "call getAllActiveActivity()";
+        $conn = Connection::getInstance();
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+
+        try {
+            $stmt->execute();
+            $a = array();
+
+            foreach ($stmt->fetchAll() as $row) {
+                $activity = new activity($row['activityId'], $row['name'], $row['image'], $row['description'], $row['caloriesBurnPerMin'], $row['suggestedDuration']);
+                $activity->setStatus($row['status']);
+                array_push($a, $activity);
+            }
+            return $a;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
     public function registerNewActivity($activity) {
         $conn = Connection::getInstance();
         $sqlInserted = "call registerNewActivity(?,?,?,?,?)";
@@ -119,6 +139,23 @@ class activityDa {
         $stmt->bindParam(6, $suggestedDuration);
         try {
             $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getActivityName($activityId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getActivityName(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $activityId);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();

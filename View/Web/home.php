@@ -15,7 +15,6 @@
     If a person is physically fit, but mentally unwell or troubled, he or she will not be able to function optimally. 
     Mental fitness can only be achieved if your body is functioning well. You can help relax your own mind and eliminate stresses by exercising 
     regularly and eating right.
-
 </p>
 <br>
 <b>Why is it Important to Be Physically Fit?</b><br>

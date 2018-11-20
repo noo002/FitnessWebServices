@@ -1,9 +1,21 @@
 <?php
-    session_start();
-    
-    require_once 'viewProfile.php';
-    require_once 'editProfile.php';
-    require_once 'changePassword.php';
+require_once '../../../Model/trainer.php';
+session_start();
+
+require_once '../../../Control/CommonFunction.php';
+$cf = new commonFunction();
+
+
+if(!isset($_SESSION['trainerDetail'])){
+    $path = "../home.php";
+    $message = "Please login before access to system";
+    $cf->messageAndRedict($message, $path);
+}
+
+
+require_once 'viewProfile.php';
+require_once 'editProfile.php';
+require_once 'changePassword.php';
 ?>
 <html>
     <meta http-equiv='cache-control' content='no-cache'>
@@ -39,34 +51,33 @@
     <body>
         <div class="header">
             <div class="container">
-              <a href="#home">
-                <img src="../image/logo-small.png" id="logo" alt="Fitness Companion" class="nav navbar-nav navbar-left"/>
-              </a>
-              <h2>Fitness Companion</h2>
-              <ul class="nav nav-tabs">
-                <li ><a href="studentList.php">Student</a></li>
-               <!-- <li class="register"><a href="dietPlanList.php">Meal Plan</a></li>-->
-                <li class="register"><a href="activityPlanList.php">Activity Plan</a></li>
-                <li><a href="foodList.php">Foods Nutrient</a></li>
-                <li><a href="activityList.php">Activity</a></li>
-                <li><a href="createGoal.php">Goal</a></li>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">eugence966@hotmail.com<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
+                <a href="#home">
+                    <img src="../image/logo-small.png" id="logo" alt="Fitness Companion" class="nav navbar-nav navbar-left"/>
+                </a>
+                <h2>Fitness Companion</h2>
+                <ul class="nav nav-tabs">
+                    <li ><a href="../../../Control/Trainer/traineeList.php">Trainee</a></li>
+                    <!-- <li class="register"><a href="dietPlanList.php">Meal Plan</a></li>-->
+                    <li class="register"><a href="../../../Control/Trainer/activityPlanList.php">Activity Plan</a></li>
+                    <li><a href="../../../Control/Trainer/foodList.php">Food Nutrient</a></li>
+                    <li><a href="../../../Control/Trainer/activityList.php">Activity</a></li>
+                    <li><a href="../../../Control/Trainer/goalList.php">Goal</a></li>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['trainerDetail']->email ?><b class="caret"></b></a>
+                            <ul class="dropdown-menu">
                                 <li><a href="#" onclick="viewProfile()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
-                                 <li><a href="#" onclick="editProfile()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-pencil"></span> Edit Profile</a></li>
+                                <li><a href="#" onclick="editProfile()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-pencil"></span> Edit Profile</a></li>
                                 <li><a href="#" onclick="changePass()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-cog"></span> Change Password</a></li>
-                                
+                                <li><a href="../../../Control/Trainer/security.php" style="font-size:12pt;"><span class="glyphicon glyphicon-lock"></span>&nbsp; View Security</a></li>
                                 <li><hr/></li>
-                                <li><a href="?logout" style="font-size:12pt;"  ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                        </ul>
-                    </li>
-                  </ul>
-              </ul>
+                                <li><a href="../../../Control/Trainer/logout.php" style="font-size:12pt;"  ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </ul>
             </div>
             <hr/>
         </div> 
         <div class="tab-content" >
-        
-           
+

@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Model/healthRecord.php';
+//require_once '../Model/healthRecord.php';
 require_once 'Connection.php';
 
 class healthRecordDa {

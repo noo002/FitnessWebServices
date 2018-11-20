@@ -54,7 +54,7 @@ class trainerDa {
     }
 
     public function registerNewTrainer($trainer, $password) {
-        //private $name, $address, $gender, $birthdate, $email, $experience, $certificate;
+//private $name, $address, $gender, $birthdate, $email, $experience, $certificate;
         $conn = Connection::getInstance();
         $sqlInserted = "call registerNewTrainer(?,?,?,?,?,?,?,?)";
         $name = $trainer->name;
@@ -150,9 +150,80 @@ class trainerDa {
         }
     }
 
+    public function getActiveTrainerId($email) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getActiveTrainerId(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $email);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getTrainerDetail($email) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getTrainerDetail(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $email);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetchAll() as $row) {
+                $trainer = new trainer($row['name'], $row['address'], $row['gender'], $row['birthdate'], $row['email'], $row['experience'], $row['certificate']);
+                $trainer->setId($row['trainerId']);
+            }
+            return $trainer;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function updateTrainerDetail($trainerId, $name, $gender, $cert, $experience) {
+        $conn = Connection::getInstance();
+        $sqlInserted = "call updateTrainerDetail(?,?,?,?,?)";
+        $stmt = $conn->getDb()->prepare($sqlInserted);
+        $stmt->bindParam(1, $trainerId);
+        $stmt->bindParam(2, $name);
+        $stmt->bindParam(3, $gender);
+        $stmt->bindParam(4, $cert);
+        $stmt->bindParam(5, $experience);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getDatabasePassword($trainerId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getTrainerPassword(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $trainerId);
+        try {
+            $stmt->execute();
+            foreach($stmt->fetch() as $row){
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new trainerDa();
+//print_r($da->getTrainerDetail("eugence966@hotmail.com"));
+//$result = $da->getActiveTrainerId("eugence966@hotmail.com");
+//echo $result;
 //$result = $da->updatetrainerActivation(1);
 //$password = 123456;
 //$email = "eugence966@hotmail.com";

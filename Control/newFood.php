@@ -2,7 +2,7 @@
 
 require_once 'CommonFunction.php';
 require_once '../Model/food.php';
-require_once '../Control/facadeNewFood.php';
+require_once 'facadeNewFood.php';
 
 $foodName = $_POST['foodName'];
 $calories = $_POST['calories'];

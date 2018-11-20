@@ -1,7 +1,7 @@
 <?php
 
-require_once '../Model/foodDa.php';
-require_once '../Model/food.php';
+require_once '../../Model/foodDa.php';
+require_once '../../Model/food.php';
 
 class facadeNewFood {
 
