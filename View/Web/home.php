@@ -6,7 +6,7 @@
 </style>
 <section id="banner">
     <h2>Fitness Companion</h2>
-    <p>Every One Can Be FIT.</p>
+    <p>Every One Can Be FIT.</p> 
 </section>
 
 <h1>What is FITNESS?</h1>
