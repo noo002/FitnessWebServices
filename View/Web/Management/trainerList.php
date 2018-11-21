@@ -15,8 +15,9 @@ require_once 'header.php';
         <th>Name</th>
         <th>Gender</th>
         <th>Email</th>
+        <th>Total Trainee</th>
         <th>Certificate</th>
-        <th>Year of Experience</th>
+
         <th>Status</th>
         <th>Action</th>
         </thead>
@@ -33,23 +34,23 @@ require_once 'header.php';
                 }
 
                 echo "<td>$key->email</td>";
+                echo "<td>$key->totalTrainee</td>";
                 echo "<td>$key->certificate</td>";
-                echo "<td>$key->experience</td>";
+
                 $active = "<button class='btn btn-primary btn-xs' name='activation' value='$key->id'><span class='glyphicon glyphicon-ok'></span>Active</button></td>";
                 $inactive = "<button class='btn btn-danger btn-xs' name='activation' value='$key->id'><span class='glyphicon glyphicon-remove'></span>Inactive</button></td>";
-                $studentList = '<td class="text-center"><button class="btn btn-primary btn-xs" name="studentList" value='.$key->id.'><span class="glyphicon glyphicon-info-sign"></span> Student List</button>&nbsp; ';
+                $studentList = '<td class="text-center"><button name="detail" value="'.$key->id  .'" class="btn btn-xs btn-success">Detail</button>&nbsp;<button class="btn btn-primary btn-xs" name="studentList" value=' . $key->id . '><span class="glyphicon glyphicon-info-sign"></span> Student List</button>&nbsp; ';
                 if ($key->status == 1) {
                     echo "<td>Active </td>";
                     echo $studentList;
                     echo $inactive;
-                    
                 } else if ($key->status == 0) {
                     echo "<td>Inactive </td>";
                     echo $studentList;
                     echo $active;
                 }
-                
-                
+
+
                 echo "</tr>";
             }
             ?>

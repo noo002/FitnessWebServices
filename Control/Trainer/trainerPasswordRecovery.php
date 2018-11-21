@@ -27,7 +27,7 @@ if ($result == 1) {
 
     $smtpEmail = new email($host, $username, $password, $from, $to, $subject, $body);
     $result = $smtpEmail->sendEmail();
-    $trainerDa->updateTrainerPassword($email, $code);
+    $trainerDa->updateTrainerPassword($email, md5($code));
     if ($result == true) {
         $message = "Please check your email";
     } else {

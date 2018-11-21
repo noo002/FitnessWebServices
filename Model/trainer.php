@@ -15,6 +15,7 @@ class trainer {
 
     private $name, $address, $gender, $birthdate, $email, $experience, $certificate;
     private $id, $status;
+    private $totalTrainee;
 
     function __construct($name, $address, $gender, $birthdate, $email, $experience, $certificate) {
         $this->name = $name;
@@ -24,6 +25,10 @@ class trainer {
         $this->email = $email;
         $this->experience = $experience;
         $this->certificate = $certificate;
+    }
+
+    function setTotalTrainee($totalTrainee) {
+        $this->totalTrainee = $totalTrainee;
     }
 
     function setStatus($status) {

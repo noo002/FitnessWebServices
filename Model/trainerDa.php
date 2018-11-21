@@ -19,7 +19,7 @@ class trainerDa {
     public function getAllTrainer() {
 
         $conn = Connection::getInstance();
-        $sqlSelected = "select * from trainer";
+        $sqlSelected = "call getAllTraineeHandled()";
         $stmt = $conn->getDb()->prepare($sqlSelected);
         try {
             $stmt->execute();
@@ -27,6 +27,7 @@ class trainerDa {
             foreach ($stmt->fetchAll() as $row) {
                 $trainer = new trainer($row['name'], $row['address'], $row['gender'], $row['birthdate'], $row['email'], $row['experience'], $row['certificate']);
                 $trainer->setId($row['trainerId']);
+                $trainer->setTotalTrainee($row['TotalTrainee']);
                 $trainer->setStatus($row['status']);
                 array_push($trainerArray, $trainer);
             }
@@ -208,7 +209,7 @@ class trainerDa {
         $stmt->bindParam(1, $trainerId);
         try {
             $stmt->execute();
-            foreach($stmt->fetch() as $row){
+            foreach ($stmt->fetch() as $row) {
                 $result = $row;
                 break;
             }

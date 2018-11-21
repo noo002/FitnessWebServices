@@ -4,6 +4,12 @@ require_once '../CommonFunction.php';
 require_once '../../Model/standardGoal.php';
 require_once '../../Model/standardGoalDa.php';
 
+require_once '../../Model/trainer.php';
+require_once '../../Model/trainerTrackLogDa.php';
+require_once '../../Model/trainerTrackLog.php';
+require_once '../../Control/Trainer/facadeTrainerTracking.php';
+
+
 $cf = new commonFunction();
 $path = "goalList.php";
 
@@ -51,10 +57,13 @@ if (!$error) {
     $standardGoal->setStandardGoalId($_SESSION['standardGoalDetail']->standardGoalId);
     $da = new standardGoalDa();
     $result = $da->updateStandardGoal($standardGoal);
-    if($result >0){
-        $message = $goalName." is updated!";
-    }
-    else{
+    if ($result > 0) {
+        $trainerId = $_SESSION['trainerDetail']->id;
+        $trainerTrackLog = new trainerTrackLog($trainerId, 9);
+        $facadeTrainer = new facadeTrainerTracking($trainerTrackLog);
+        $facadeTrainer->processTrackLog();
+        $message = $goalName . " is updated!";
+    } else {
         $message = "Problem occur please contact IT for checking";
     }
     unset($_SESSION['standardGoalDetail']);

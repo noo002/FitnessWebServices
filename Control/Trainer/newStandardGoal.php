@@ -4,6 +4,12 @@ require_once '../CommonFunction.php';
 require_once '../../Model/standardGoal.php';
 require_once '../../Model/standardGoalDa.php';
 
+
+require_once '../../Model/trainer.php';
+require_once '../../Model/trainerTrackLogDa.php';
+require_once '../../Model/trainerTrackLog.php';
+require_once '../../Control/Trainer/facadeTrainerTracking.php';
+
 $goalName = $_POST['goalName'];
 $foodIntake = $_POST['foodIntake'];
 $activityDuration = $_POST['activityDuration'];
@@ -45,9 +51,14 @@ if (!$error) {
     $standardGoalDa = new standardGoalDa();
     $result = $standardGoalDa->registerNewStandardGoal($standardGoal);
     if ($result > 0) {
+        session_start();
+        $trainerId = $_SESSION['trainerDetail']->id;
+        $trainerTrackLog = new trainerTrackLog($trainerId, 8);
+        $facadeTrainer = new facadeTrainerTracking($trainerTrackLog);
+        $facadeTrainer->processTrackLog();
         $message = $result . " goal has been added!";
     } else {
         $message = "Problem occrur please contact internal staff perform checking";
     }
 }
-$cf->messageAndRedict($message, $path);
+    $cf->messageAndRedict($message, $path);

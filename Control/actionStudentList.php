@@ -6,6 +6,8 @@ require_once '../Model/trainer.php';
 require_once '../Model/trainee.php';
 require_once '../Model/traineeDa.php';
 require_once '../Model/trainerDa.php';
+require_once '../Model/trainerTrackLogDa.php';
+require_once '../Model/trainerTrackLog.php';
 
 if (isset($_POST['studentList'])) {
     $studentList = $_POST['studentList'];
@@ -36,6 +38,22 @@ if (isset($_POST['studentList'])) {
     $cf = new commonFunction();
     $path = "trainerList.php";
     $cf->messageAndRedict($message, $path);
+} else if (isset($_POST['detail'])) {
+    $trainerId = $_POST['detail'];
+    $path = "../View/Web/Management/trainerDetail.php";
+    session_start();
+    $da = new trainerTrackLogDa();
+    $s = array();
+    for ($i = 1; $i < 12; $i++) {
+        $r = array(
+           "Total" => $da->getTrainerTrackLog($trainerId, $i)
+        );
+        array_push($s, $r);
+    }
+    $_SESSION['trainerTrackLog'] = $s;
+    
+    $cf = new commonFunction();
+    $cf->redicrect($path);
 } else {
     $cf = new commonFunction();
     $path = "trainerList.php";

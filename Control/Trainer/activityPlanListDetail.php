@@ -10,6 +10,10 @@ require_once '../../Model/trainer.php';
 require_once '../../Model/feedback.php';
 require_once '../../Model/feedbackDa.php';
 
+require_once '../../Model/trainerTrackLogDa.php';
+require_once '../../Model/trainerTrackLog.php';
+require_once '../../Control/Trainer/facadeTrainerTracking.php';
+
 $cf = new commonFunction();
 
 if (isset($_POST['detail'])) {
@@ -35,8 +39,12 @@ if (isset($_POST['detail'])) {
     $_SESSION['activityPlanDescription'] = $description;
     $_SESSION['activityPlanId'] = $activityPlanId;
     $feedbackDa = new feedbackDa();
-    $feedbackList = $feedbackDa->getAllFeedback($_SESSION['trainerDetail']->id,$activityPlanId);
+    $feedbackList = $feedbackDa->getAllFeedback($_SESSION['trainerDetail']->id, $activityPlanId);
     $_SESSION['feedbackList'] = $feedbackList;
+    $trainerId = $_SESSION['trainerDetail']->id;
+    $trainerTrackLog = new trainerTrackLog($trainerId, 5);
+    $facadeTrainer = new facadeTrainerTracking($trainerTrackLog);
+    $facadeTrainer->processTrackLog();
 } else if (isset($_POST['edit'])) {
     $path = "../../View/Web/Trainer/editActivityPlan.php";
     $activityPlanId = $_POST['edit'];
