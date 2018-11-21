@@ -39,7 +39,7 @@ require_once '../../../Control/CommonFunction.php';
                 echo "<td>$key->status</td>";
                 echo '<td class="text-center">'
                 . '<button name="detail" value="' . $key->traineeId . '" class="btn btn-primary btn-xs"  href="#"><span class="glyphicon glyphicon-info-sign"></span> Detail</button> &nbsp '
-                . '<button name=""assignPlan" value="' . $key->traineeId . '" class="btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-pencil"></span> Assign Plan</button> </td>';
+                . '<button name="assignPlan" value="' . $key->traineeId . '" class="btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-pencil"></span> Assign Plan</button> </td>';
                 echo '</tr>';
                 echo "</tr>";
             }

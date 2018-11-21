@@ -6,6 +6,7 @@ require_once '../Model/trainee.php';
 require_once '../Model/healthRecordDa.php';
 require_once '../Model/healthRecord.php';
 require_once '../Model/goalDa.php';
+require_once '../Model/activityPlanDa.php';
 
 if (isset($_POST['detail'])) {
     $traineeId = $_POST['detail'];
@@ -28,4 +29,15 @@ if (isset($_POST['detail'])) {
 }
 if (isset($_POST['assignPlan'])) {
     $traineeId = $_POST['assignPlan'];
+    $traineeDa = new traineeDa();
+    $activityPlanDa = new activityPlanDa();
+    $traineeName = $traineeDa->getTraineeName($traineeId);
+    $allActivityPlan = $activityPlanDa->getTraineeActivityPlan($traineeId);
+    session_start();
+    $_SESSION['allActivityPlan'] = $allActivityPlan;
+    $_SESSION['traineeId'] = $traineeId;
+    $_SESSION['traineeName'] = $traineeName;
+    $path = "../View/Web/Management/assignPlan.php";
+    $cf = new commonFunction();
+    $cf->redicrect($path);
 }

@@ -300,10 +300,106 @@ class activityPlanDa {
         }
     }
 
+    private function getAllActivityPlan() {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getAllActivityPlan()";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        try {
+            $stmt->execute();
+            $result = array();
+            foreach ($stmt->fetchAll() as $row) {
+                $plan = array(
+                    "activityPlanId" => $row['activityPlanId'],
+                    "description" => $row['description'],
+                    "status" => 0
+                );
+                array_push($result, $plan);
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getTraineeActivityPlan($traineeId) {
+        $conn = Connection::getInstance();
+        $sqlSeleted = "call getTraineeActivityPlan(?)";
+        $stmt = $conn->getDb()->prepare($sqlSeleted);
+        $result = $this->getAllActivityPlan();
+        $stmt->bindParam(1, $traineeId);
+        try {
+            $stmt->execute();
+            if (sizeof($stmt->rowCount()) == 0) {
+                echo "0";
+            } else {
+                foreach ($stmt->fetchAll() as $row) {
+                    foreach ($result as $r => $key) {
+                        if ($key['activityPlanId'] == $row['activityPlanId']) {
+                            $result[$r]['status'] = 1;
+                            break;
+                        }
+                    }
+                    break;
+                }
+                return $result;
+            }
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function checkAssignedPlan($traineeId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call checkAssignedPlan(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $traineeId);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function updateAssignPlan($activityPlanId, $traineeId) {
+        $conn = Connection::getInstance();
+        $sqlUpdated = "call updateAssignPlan(?,?)";
+        $stmt = $conn->getDb()->prepare($sqlUpdated);
+        $stmt->bindParam(1, $activityPlanId);
+        $stmt->bindParam(2, $traineeId);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function registerNewAssignPlan($activityPlanId, $traineeId) {
+        $sqlInserted = "call registerNewFitness(?,?)";
+        $conn = Connection::getInstance();
+        $stmt = $conn->getDb()->prepare($sqlInserted);
+        $stmt->bindParam(1, $activityPlanId);
+        $stmt->bindParam(2, $traineeId);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new activityPlanDa();
-//$result = $da->checkDietPlanDetail(1, 1);
+//$result =$da->getTraineeActivityPlan(2);
+//foreach($result as $row){
+//    echo   $row['activityPlanId']  ." = ".$row['status']."<br/>";
+//}
 //echo $result;
 //print_r($result);
 //foreach ($result as $row) {

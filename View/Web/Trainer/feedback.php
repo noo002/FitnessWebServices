@@ -28,10 +28,9 @@ and open the template in the editor.
             foreach ($feedbackList as $row => $key) {
                 $totalRating = $totalRating + $key->rating;
             }
-            if($totalRating == 0){
-               
-            }
-            else{
+            if ($totalRating == 0) {
+                
+            } else {
                 $totalRating = $totalRating / sizeof($feedbackList);
             }
             ?>
@@ -42,7 +41,9 @@ and open the template in the editor.
             <p style="float:left;position: relative;left:400px;"><b>
                     <?php
                     echo $totalRating . "<br/>";
-                    if ($totalRating < 1) {
+                    if($totalRating ==0){
+                        echo $blackStar, $blackStar, $blackStar, $blackStar, $blackStar;
+                    } else if ($totalRating >0 && $totalRating < 1) {
                         echo $halfStar, $blackStar, $blackStar, $blackStar, $blackStar;
                     } else if ($totalRating == 1) {
                         echo $fullStar, $blackStar, $blackStar, $blackStar, $blackStar;
@@ -74,28 +75,28 @@ and open the template in the editor.
                 }
             </style>
             <p id="rating">
-                <?php
-                $five = 0;
-                $four = 0;
-                $three = 0;
-                $two = 0;
-                $one = 0;
-                foreach ($feedbackList as $row => $key) {
-                    if ($key->rating == 1) {
-                        $one = $one + 1;
-                    } else if ($key->rating == 2) {
-                        $two = $two + 1;
-                    } else if ($key->rating == 3) {
-                        $three = $three + 1;
-                    } else if ($key->rating == 4) {
-                        $four = $four + 1;
-                    } else if ($key->rating == 5) {
-                        $five = $five + 1;
-                    }
-                }
-                ?>
+<?php
+$five = 0;
+$four = 0;
+$three = 0;
+$two = 0;
+$one = 0;
+foreach ($feedbackList as $row => $key) {
+    if ($key->rating == 1) {
+        $one = $one + 1;
+    } else if ($key->rating == 2) {
+        $two = $two + 1;
+    } else if ($key->rating == 3) {
+        $three = $three + 1;
+    } else if ($key->rating == 4) {
+        $four = $four + 1;
+    } else if ($key->rating == 5) {
+        $five = $five + 1;
+    }
+}
+?>
                 <b>5 <span class="fa fa-star"></span> - 
-                    <?php echo $five ?> People
+                <?php echo $five ?> People
                 </b><br/>
                 <b>4 <span class="fa fa-star"></span> - 
                     <?php echo $four ?> People
@@ -108,7 +109,7 @@ and open the template in the editor.
                 </b><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <b>1 <span class="fa fa-star"></span> - 
-                    <?php echo $one ?> People
+<?php echo $one ?> People
                 </b>
 
             </p>    
@@ -126,34 +127,34 @@ and open the template in the editor.
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach($feedbackList as $row =>$key){
-                    echo "<tr>";
-                    if ($totalRating < 1) {
-                        echo "<td>".$halfStar, $blackStar, $blackStar, $blackStar, $blackStar."</td>";
-                    } else if ($totalRating == 1) {
-                        echo "<td>".$fullStar, $blackStar, $blackStar, $blackStar, $blackStar."</td>";
-                    } else if ($totalRating > 1 && $totalRating < 2) {
-                        echo "<td>".$fullStar, $halfStar, $blackStar, $blackStar, $blackStar."</td>";
-                    } else if ($totalRating == 2) {
-                        echo "<td>".$fullStar, $fullStar, $blackStar, $blackStar, $blackStar."</td>";
-                    } else if ($totalRating > 2 && $totalRating < 3) {
-                        echo "<td>".$fullStar, $fullStar, $halfStar, $blackStar, $blackStar."</td>";
-                    } else if ($totalRating == 3) {
-                        echo "<td>".$fullStar, $fullStar, $fullStar, $blackStar, $blackStar."</td>";
-                    } else if ($totalRating > 3 && $totalRating < 4) {
-                        echo "<td>".$fullStar, $fullStar, $fullStar, $halfStar, $blackStar."</td>";
-                    } else if ($totalRating == 4) {
-                        echo "<td>".$fullStar, $fullStar, $fullStar, $fullStar, $blackStar."</td>";
-                    } else if ($totalRating > 4 && $totalRating < 5) {
-                        echo "<td>".$fullStar, $fullStar, $fullStar, $fullStar, $halfStar."</td>";
-                    } else if ($totalRating == 5) {
-                        echo "<td>".$fullStar, $fullStar, $fullStar, $fullStar, $fullStar."</td>";  
-                    }
-                    echo "<td>$key->description</td>";
-                    echo "</tr>";
-                }
-                ?>
+<?php
+foreach ($feedbackList as $row => $key) {
+    echo "<tr>";
+    if ($totalRating < 1) {
+        echo "<td>" . $halfStar, $blackStar, $blackStar, $blackStar, $blackStar . "</td>";
+    } else if ($totalRating == 1) {
+        echo "<td>" . $fullStar, $blackStar, $blackStar, $blackStar, $blackStar . "</td>";
+    } else if ($totalRating > 1 && $totalRating < 2) {
+        echo "<td>" . $fullStar, $halfStar, $blackStar, $blackStar, $blackStar . "</td>";
+    } else if ($totalRating == 2) {
+        echo "<td>" . $fullStar, $fullStar, $blackStar, $blackStar, $blackStar . "</td>";
+    } else if ($totalRating > 2 && $totalRating < 3) {
+        echo "<td>" . $fullStar, $fullStar, $halfStar, $blackStar, $blackStar . "</td>";
+    } else if ($totalRating == 3) {
+        echo "<td>" . $fullStar, $fullStar, $fullStar, $blackStar, $blackStar . "</td>";
+    } else if ($totalRating > 3 && $totalRating < 4) {
+        echo "<td>" . $fullStar, $fullStar, $fullStar, $halfStar, $blackStar . "</td>";
+    } else if ($totalRating == 4) {
+        echo "<td>" . $fullStar, $fullStar, $fullStar, $fullStar, $blackStar . "</td>";
+    } else if ($totalRating > 4 && $totalRating < 5) {
+        echo "<td>" . $fullStar, $fullStar, $fullStar, $fullStar, $halfStar . "</td>";
+    } else if ($totalRating == 5) {
+        echo "<td>" . $fullStar, $fullStar, $fullStar, $fullStar, $fullStar . "</td>";
+    }
+    echo "<td>$key->description</td>";
+    echo "</tr>";
+}
+?>
             </tbody>
         </table>
         <style type="text/css">
@@ -162,8 +163,8 @@ and open the template in the editor.
             }
         </style>
         <br/>  <br/>  
-        <?php
-        require_once '../footer.php';
-        ?>
+<?php
+require_once '../footer.php';
+?>
     </body>
 </html>

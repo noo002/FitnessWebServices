@@ -81,6 +81,24 @@ class traineeDa {
         }
     }
 
+    public function getTraineeName($traineeId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getTraineeName(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $traineeId);
+
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new traineeDa();
