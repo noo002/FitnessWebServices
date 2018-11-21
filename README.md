@@ -1,6 +1,4 @@
 # FitnessWebServices
-so far the fitness website are able to run for Management only, when i take over this project, i have to change the database structure 
-and make it MVC format, therefore, i have to change alot of thing before i add more feature inside to it. thank alot
+It is a good news that the Website of fitness application have successfully done, but i belive that still have the improvement of the system to make it more perfection.
 
-27 oct 2018
-The fitness website have perform password encryption, most of the basic function are available to view trainer will be done by next 2 week predicted at 10 November 2018
+It might have bug, so i will find it out and make it more perfect!
