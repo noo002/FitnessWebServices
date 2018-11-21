@@ -18,6 +18,11 @@ class Management {
             return $this->$property;
         }
     }
-    
+
+    public function __set($property, $value) {
+        if (property_exists($this, $property)) {
+            $this->$property = $value;
+        }
+    }
 
 }
