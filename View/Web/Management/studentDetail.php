@@ -67,7 +67,8 @@ and open the template in the editor.
     <td></td>
     <td>
         <b> Goal :  </b><?php echo $goalDetail['goalName'] ?><br/>
-        <b>Trainee Goal Description :</b> <?php echo $goalDetail['description'] ?>
+        <b>Trainee Goal Description :</b> <?php echo $goalDetail['description'] ?><br/>
+        <b>Measurement : </b> : <?php echo $goalDetail['measurement'] ?>
     </td>
 </table>
 <p>

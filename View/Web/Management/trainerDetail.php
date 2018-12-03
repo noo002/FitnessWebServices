@@ -18,8 +18,10 @@ and open the template in the editor.
         $trainerTrackLog = $_SESSION['trainerTrackLog'];
         ?>
         <p>
-            <b>Fitness Companion - Trainer Detail </b>
-        </p><br/>
+            <b><a href="../../../Control/trainerList.php">Trainer List</a> - Trainer Detail </b>
+        </p>
+        <p><b>Past 30 day record will be removed</b></p>
+        <br/>
         <div id="columnchart_values" style="width: 1500px; height: 300px;"></div>
         <script type="text/javascript">
             google.charts.load("current", {packages: ['corechart']});

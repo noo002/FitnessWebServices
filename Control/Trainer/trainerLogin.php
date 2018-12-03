@@ -29,7 +29,7 @@ if (!empty($email) && !empty($password)) {
                 $trainerLoginLogDa = new trainerLoginLogDa();
                 $result = $trainerLoginLogDa->insertTrainerLoginLog($trainerLoginLog);
                 $message = "ok";
-                $loginPath = "traineeList.php";
+                $loginPath = "security.php";
                 $trainerDetail = $trainerDa->getTrainerDetail($email);
                 $_SESSION['trainerDetail'] = $trainerDetail;
                 $cf->messageAndRedict($message, $loginPath);
