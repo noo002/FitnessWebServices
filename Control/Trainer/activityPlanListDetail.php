@@ -30,6 +30,8 @@ if (isset($_POST['detail'])) {
     //here is food places
     $foodListDetail = $activityPlanDa->getActivityPlanFoodList($_SESSION['trainerDetail']->id, $activityPlanId);
     $_SESSION['foodListDetail'] = $foodListDetail;
+    
+    
 } else if (isset($_POST['feedback'])) {
     $path = "../../View/Web/Trainer/feedback.php";
     $activityPlanId = $_POST['feedback'];

@@ -23,55 +23,35 @@ and open the template in the editor.
                 $("#activityPlan").dataTable();
             });
         </script>
-        <table id="activityPlan" style="font-size: 12pt">
-            <thead>
-                <tr>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $activityPlanList = $_SESSION['allActivityPlan'];
-                foreach ($activityPlanList as $row => $key) {
-                    echo "<tr>";
-                    echo "<td>" . $key['description'] . "</td>";
-                    if ($key['status'] == 0) {
-                        echo "<td>";
-                        echo '<input type="radio" name="activityPlan" id="' . $key['activityPlanId'] . '" value="" />';
-                        echo "</td>";
-                    } else if ($key['status'] == 1) {
-                        echo "<td>";
-                        echo '<input type="radio" id="' . $key['activityPlanId'] . '" checked name="activityPlan" value="" />';
-                        echo "</td>";
+        <form method="post" action="../../../Control/assignPlan.php">
+            <table id="activityPlan" style="font-size: 12pt">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $activityPlanList = $_SESSION['allActivityPlan'];
+                    foreach ($activityPlanList as $row => $key) {
+                        echo "<tr>";
+                        echo "<td>" . $key['description'] . " </td>";
+                        if ($key['status'] == 1) {
+                            echo "<td><button name='activityPlanId' class='btn btn-xs btn-primary btn-success' disabled>selected</button></td>";
+                        } else {
+                            echo "<td><button value='" . $key['activityPlanId'] . "' name='activityPlanId' class='btn btn-primary btn-xs'>select</button></td>";
+                        }
+                        echo "</tr>";
                     }
-                    echo "<td><button value='" . $key['activityPlanId'] . "' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-floppy-saved'></span>&nbsp;&nbsp;Select</button></td>";
-                    echo "</td>";
-                }
-                ?>
+                    ?>
 
-            <script>
-                $(document).ready(function () {
-                    $('button').click(function () {
-                        var activityPlanId = this.value;
-                        var status = document.getElementById(activityPlanId).checked;
-                        $.ajax({
-                            type: "post",
-                            url: "../../../Control/assignPlan.php",
-                            data: {activityPlanId: activityPlanId, status: status},
-                            success: function (data) {
-                                alert(data);
-                            }
-                        });
-                    })
-                });
-            </script>
-        </tbody>
-    </table>
 
-    <?php
-    require_once '../footer.php';
-    ?>
-</body>
+                </tbody>
+            </table>
+        </form>
+        <?php
+        require_once '../footer.php';
+        ?>
+    </body>
 </html>

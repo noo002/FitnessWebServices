@@ -21,6 +21,18 @@ and open the template in the editor.
                 $("#dietListTable").dataTable();
             });
         </script>
+        <script type="text/javascript">
+            function disableF5(e) {
+                if ((e.which || e.keyCode) === 116 ) {
+                    e.preventDefault();
+                    alert("You are not allowed to refresh this page");
+                }
+            }
+            ;
+            $(document).ready(function () {
+                $(document).on("keydown", disableF5);
+            });
+        </script>
         <style type="text/css">
             tbody{
                 font-size: 12pt;
@@ -36,7 +48,6 @@ and open the template in the editor.
                 <th>Name</th>
                 <th>Calories Burn Per Minutes</th>
                 <th>Suggested Duration</th>
-                <th>Status</th>
                 <th>Action</th>
                 </thead>
                 <tbody>
@@ -47,12 +58,13 @@ and open the template in the editor.
                         echo "<td>" . $row['name'] . "</td>";
                         echo "<td>" . $row['caloriesburnpermin'] . "</td>";
                         echo "<td>" . $row['suggestedduration'] . "</td>";
+                        $cancel = "<td><button id='" . $row['activityId'] . "' name='activityId' value='" . $row['activityId'] . "'  class='btn btn-primary btn-xs'>Cancel</button></td>";
+                        $select = "<td><button id='" . $row['activityId'] . "' name='activityId' value='" . $row['activityId'] . "'  class='btn btn-success btn-xs'>Select</button></td>";
                         if ($row['status'] == 1) {
-                            echo '<td><input id="' . $row['activityId'] . '" type = "checkbox"  value="' . $row['activityId'] . '" name ="' . $row['activityId'] . '" checked /></td>';
+                            echo $cancel;
                         } else {
-                            echo '<td><input id="' . $row['activityId'] . '" type="checkbox" value="' . $row['activityId'] . '" name ="' . $row['activityId'] . '"  /></td>';
+                            echo $select;
                         }
-                        echo "<td><button  value='" . $row['activityId'] . "'  name='save' id='" . $row['activityId'] . "' class='btn btn-xs btn-success'>Save</button></td>";
                         echo "</tr>";
                     }
                     ?>
@@ -61,57 +73,63 @@ and open the template in the editor.
         </form>
 
         <br/>
-
-        <h4><b><?php echo $_SESSION['activityPlanDescription'] ?></b></h4>
         <table id="dietListTable">
             <thead>
-            <th>Name</th>
-            <th>Fat</th>
-            <th>Protein</th>
-            <th>carbohydrate</th>
-            <th>Status</th>
-            <th>Action</th>
-        </thead>
-        <tbody>
-            <?php
-            $foodListDetail = $_SESSION['foodListDetail'];
-            foreach ($foodListDetail as $row) {
-                echo "<tr>";
-                echo "<td>" . $row['name'] . "</td>";
-                echo "<td>" . $row['fat'] . "</td>";
-                echo "<td>" . $row['protein'] . "</td>";
-                echo "<td>" . $row['carbohydrate'] . "</td>";
-                if (!empty($row['status'])) {
-                    echo '<td><input type="checkbox" id="f' . $row['foodId'] . '" name="status" checked /></td>';
-                } else {
-                    echo '<td><input type="checkbox" name="' . $row['foodId'] . '" id="f' . $row['foodId'] . '" /></td>';
+                <tr>
+                    <th>Name</th>
+                    <th>Fat</th>
+                    <th>Protein</th>
+                    <th>Carbohydrate</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $foodListDetail = $_SESSION['foodListDetail'];
+                foreach ($foodListDetail as $row => $key) {
+                    echo "<tr>";
+                    echo "<td>" . $key['name'] . "</td>";
+                    echo "<td>" . $key['fat'] . "</td>";
+                    echo "<td>" . $key['protein'] . "</td>";
+                    echo "<td>" . $key['carbohydrate'] . "</td>";
+                    $cancel = '<td><input type="submit"onclick="foodAction(' . $key['foodId'] . ')" id="f' . $key['foodId'] . '"   value="Cancel" class="btn btn-primary btn-xs"/></td>';
+                    $select = '<td><input type="submit"onclick="foodAction(' . $key['foodId'] . ')" id="f' . $key['foodId'] . '"  value="Select" class="btn btn-xs btn-success"/></td>';
+                    if ($key['status'] == 1) {
+                        echo $cancel;
+                    } else {
+                        echo $select;
+                    }
+                    echo "</tr>";
                 }
-                echo '<td><input type="submit"onclick="foodAction(' . $row['foodId'] . ')"  value="save" class="btn btn-xs btn-success"/></td>';
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
+                ?>
+            </tbody>
+        </table>
         <script>
-            //1 using the script in  <script src="js/activityPlanDetail.js" type="text/javascript"> here
-            //1 write at here because of only here can run .
             function foodAction(foodId) {
-                var status = "f" + foodId;
-                var s = document.getElementById(status).checked;
                 $.ajax({
-                    type: "post",
+                    method: "post",
                     url: "../../../Control/Trainer/actionFoodPlanDetail.php",
-                    data: {foodId: foodId, status: s},
+                    data: {foodId: foodId},
                     success: function (data) {
-                        alert(data);
+                        if (data === "1") {
+                            var buttonId = "f" + foodId;
+                            document.getElementById(buttonId).value = "Cancel";
+                            document.getElementById(buttonId).className = "btn btn-primary btn-xs";
+                            alert("This Food is Assigned to the Plan");
+                        } else if (data === "2") {
+                            var buttonId = "f" + foodId;
+                            document.getElementById(buttonId).value = "Select";
+                            document.getElementById(buttonId).className = "btn btn-success btn-xs";
+                            alert("This Food is Removed from the Plan");
+                        } else {
+                            alert(data);
+                        }
                     }
                 });
             }
-
         </script>
-    </table>
-
-    <?php
-    require_once '../footer.php';
-    ?>
-</body>
+        <?php
+        require_once '../footer.php';
+        ?>
+    </body>
 </html>
