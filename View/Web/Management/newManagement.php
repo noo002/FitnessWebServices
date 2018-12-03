@@ -19,14 +19,14 @@ and open the template in the editor.
         <link rel="stylesheet" href="/resources/demos/style.css">
 
         <p>
-            <b><a href="../../../Control/managementList.php">Management List </a> - Management Registration </b>
+            <b><a href="../../../Control/managementList.php">User List </a> - User Registration </b>
         </p><br/>
         <div>
             <form action="../../../Control/newManagement.php" method="post">
                 <table class="table table-bordered table-striped" align="center">
                     <thead>
                         <tr>
-                            <th colspan="2" style="text-align: center">New Trainer Registration</th>
+                            <th colspan="2" style="text-align: center">New User Registration</th>
                         </tr>
                     </thead>
                     <tr>

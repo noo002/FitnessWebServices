@@ -86,7 +86,7 @@ and open the template in the editor.
                     <tr>
                         <td></td>
                         <td>
-                            <input type="submit" value="Add"class="btn btn-primary btn-xs" />
+                            <input type="submit" value="Submit"class="btn btn-primary btn-xs" />
                             <input type="reset" value="Reset"  class="btn btn-xs btn-danger delete"/>
                         </td>
                     </tr>

@@ -5,6 +5,7 @@ require_once '../../Model/trainer.php';
 require_once '../../Model/trainerDa.php';
 require_once '../../Model/trainerLoginLog.php';
 require_once '../../Model/trainerLoginLogDa.php';
+require_once '../../Model/email.php';
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -17,8 +18,12 @@ if (!empty($email) && !empty($password)) {
         //check email existed 
         if ($trainerDa->checkExistedEmail($email) == 1) {
             $result = $trainerDa->trainerLogin($email, md5($password));
+            session_start();
             if ($result == 1) {
                 //perform login log and then access system
+                if (isset($_SESSION['count'])) {
+                    unset($_SESSION['count']);
+                }
                 $trainerId = $trainerDa->getActiveTrainerId($email);
                 $trainerLoginLog = new trainerLoginLog(1, $trainerId);
                 $trainerLoginLogDa = new trainerLoginLogDa();
@@ -26,7 +31,6 @@ if (!empty($email) && !empty($password)) {
                 $message = "ok";
                 $loginPath = "traineeList.php";
                 $trainerDetail = $trainerDa->getTrainerDetail($email);
-                session_start();
                 $_SESSION['trainerDetail'] = $trainerDetail;
                 $cf->messageAndRedict($message, $loginPath);
             } else if ($result > 1) {
@@ -34,12 +38,41 @@ if (!empty($email) && !empty($password)) {
                 $cf->messageAndRedict($message, $path);
             } else if ($result < 1) {
                 $trainerId = $trainerDa->getActiveTrainerId($email);
-                $trainerLoginLog = new trainerLoginLog(2, $trainerId);
-                $trainerLoginLogDa = new trainerLoginLogDa();
-                $result = $trainerLoginLogDa->insertTrainerLoginLog($trainerLoginLog);
-                $message = "Invalid email or password";
-                //if same email then save to loginlog for fail
-                $cf->messageAndRedict($message, $path);
+                $trainerStatus = $trainerDa->getTrainerStatus($trainerId);
+                if ($trainerStatus == 1 || $trainerStatus == 3) {
+                    $trainerLoginLog = new trainerLoginLog(2, $trainerId);
+                    $trainerLoginLogDa = new trainerLoginLogDa();
+                    $trainerLoginLogDa->insertTrainerLoginLog($trainerLoginLog);
+                    if ($trainerStatus == 1) {
+                        if (!isset($_SESSION['count'])) {
+                            $_SESSION['count'] = 1;
+                        } else {
+                            $_SESSION['count'] = $_SESSION['count'] + 1;
+                        }
+                        if ($_SESSION['count'] == 3) {
+                            $_SESSION['count'] = 0;
+                            $trainerDa->lockTrainerAccount($trainerId);
+                            $host = "localhost";
+                            $username = "FitnessApplication2018@gmail.com";
+                            $password = "taruc2018";
+                            $from = "FitnessApplication2018@gmail.com";
+                            $to = "eugence966@hotmail.com";
+                            $subject = "Locked your Account";
+                            $body = "Your account have been enter wrong password more than 3 time \n"
+                                    . " therefore your account currently been locked please perform password recovery\n"
+                                    . " in order to access";
+
+                            $smtpEmail = new email($host, $username, $password, $from, $to, $subject, $body);
+                            $result = $smtpEmail->sendEmail();
+                        }
+                    }
+                    $message = "Invalid email or password";
+                    //if same email then save to loginlog for fail
+                    $cf->messageAndRedict($message, $path);
+                } else {
+                    $message = "Invalid email or password";
+                    $cf->messageAndRedict($message, $path);
+                }
             }
         } else {
             $message = "Invalid email or password";

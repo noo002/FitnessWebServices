@@ -4,8 +4,8 @@ require_once 'header.php';
 ?>
 <script src="../js/management.js" type="text/javascript"></script>
 <p>
-    <b>Fitness Companion - Management List </b>
-    <a href="newManagement.php"><button style="float:right" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp;Insert New Management</button></a>
+    <b>Fitness Companion - User List </b>
+    <a href="newManagement.php"><button style="float:right" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp;Insert New User</button></a>
 
 </p>
 <br/>

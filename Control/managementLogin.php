@@ -38,31 +38,33 @@ if (!empty($managementEmail) && !empty($managementPassword)) {
     $result = $managementDa->managementLogin($managementEmail, $managementPassword);
     if ($result > 1 || $result < 0 || $result == 0) {
         if ($managementDa->checkEmailExist($managementEmail) == true) {
-            session_start();
-            if (!isset($_SESSION['count'])) {
-                $_SESSION['count'] = 1;
-            } else {
-                $_SESSION['count'] = $_SESSION['count'] + 1;
-            }
-            $managementLoginLogDa = new managementLoginLogDa();
-            // noted 2 for below statement indicate unsuccessful
             $managementId = $managementDa->getManagementId($managementEmail);
-            $managementLoginLog = new managementLoginLog($managementId, 2);
-            $managementLoginLogDa->insertNewloginLog($managementLoginLog);
-            if ($_SESSION['count'] == 3) {
-                if ($managementDa->getManagementStatus($managementId) == 1) {
-                    $managementDa->deactivateManagement($managementId);
+            $managementStatus = $managementDa->getManagementStatus($managementId);
+            if ($managementStatus == 1 || $managementStatus == 3) {
+                $managementLoginLogDa = new managementLoginLogDa();
+                $managementLoginLog = new managementLoginLog($managementId, 2);
+                $result = $managementLoginLogDa->insertNewloginLog($managementLoginLog);
+            }
+            if ($managementStatus == 1) {
+                session_start();
+                if (!isset($_SESSION['count'])) {
+                    $_SESSION['count'] = 1;
+                } else {
+                    $_SESSION['count'] = $_SESSION['count'] + 1;
+                }
+                if ($_SESSION['count'] == 3) {
+                    $_SESSION['count'] = 0;
                     $managementDa->lockManagementStatus($managementId);
                     $host = "localhost";
                     $username = "FitnessApplication2018@gmail.com";
                     $password = "taruc2018";
                     $from = "FitnessApplication2018@gmail.com";
                     $to = $managementEmail;
-                    $subject = "Deactivated your Account";
-                    $body = "Your account have been detected for other people entered wrong password"
-                            . " at least 3 time, for your security purpose, system was locked your account"
-                            . " please perform password recovery to release your account and remember"
-                            . " change your password";
+                    $subject = "Locked your Account";
+                    $body = "Your account have been enter wrong password more than 3 time \n"
+                            . " therefore your account currently been locked please perform password recovery\n"
+                            . " in order to access";
+
                     $smtpEmail = new email($host, $username, $password, $from, $to, $subject, $body);
                     $result = $smtpEmail->sendEmail();
                 }

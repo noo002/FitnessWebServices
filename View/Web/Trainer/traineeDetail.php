@@ -67,9 +67,9 @@ and open the template in the editor.
         <b>Measurement : </b> : <?php echo $goalDetail['measurement'] ?>
     </td>
 </table>
-<p><b>Current Weight : </b><?php echo $currentHeathRecord->weight . " KG " ?><br/>
-    <b>Current Height : </b> <?php echo $currentHeathRecord->height . " M " ?>
-
+<p>
+    <b>Current Height : </b> <?php echo $currentHeathRecord->height . " M " ?><br/>
+    <b>Current Weight : </b><?php echo $currentHeathRecord->weight . " KG " ?>
 </p>
 
 <div id="healthInfo">

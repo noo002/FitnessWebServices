@@ -12,6 +12,11 @@ $trainerDa = new trainerDa();
 
 $result = $trainerDa->checkExistedEmail($email);
 if ($result == 1) {
+    $trainerId = $trainerDa->getActiveTrainerId($email);
+    $trainerStatus = $trainerDa->getTrainerStatus($trainerId);
+    if ($trainerStatus == 3) {
+        $trainerDa->unlockTrainerAccount($trainerId);
+    }
     $host = "localhost";
     $username = "FitnessApplication2018@gmail.com";
     $password = "taruc2018";

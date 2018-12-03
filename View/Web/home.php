@@ -3,6 +3,9 @@
     .tab-content{
         width: 80%;
     }
+    p{
+        text-align: justify;
+    }
 </style>
 <section id="banner">
     <h2>Fitness Companion</h2>
@@ -10,7 +13,7 @@
 </section>
 
 <h1>What is FITNESS?</h1>
-<p>
+<p >
     Fitness does not only refer to being physically fit, but also refers to a person’s mental state as well. 
     If a person is physically fit, but mentally unwell or troubled, he or she will not be able to function optimally. 
     Mental fitness can only be achieved if your body is functioning well. You can help relax your own mind and eliminate stresses by exercising 

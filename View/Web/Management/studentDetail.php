@@ -66,13 +66,13 @@ and open the template in the editor.
     </tr>
     <td></td>
     <td>
-        <b> Goal :  </b><?php echo $goalDetail['goalName']  ?><br/>
+        <b> Goal :  </b><?php echo $goalDetail['goalName'] ?><br/>
         <b>Trainee Goal Description :</b> <?php echo $goalDetail['description'] ?>
     </td>
 </table>
-<p><b>Current Weight : </b><?php echo $currentHeathRecord->weight . " KG " ?><br/>
-    <b>Current Height : </b> <?php echo $currentHeathRecord->height . " M " ?>
-
+<p>
+    <b>Current Height : </b> <?php echo $currentHeathRecord->height . " M " ?><br/>
+    <b>Current Weight : </b><?php echo $currentHeathRecord->weight . " KG " ?>
 </p>
 
 <div id="healthInfo">

@@ -219,6 +219,49 @@ class trainerDa {
         }
     }
 
+    public function getTrainerStatus($trainerId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getTrainerStatus(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $trainerId);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function lockTrainerAccount($trainerId) {
+        $conn = Connection::getInstance();
+        $sqlUpdated = "call lockTrainerAccount(?)";
+        $stmt = $conn->getDb()->prepare($sqlUpdated);
+        $stmt->bindParam(1, $trainerId);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function unlockTrainerAccount($trainerId) {
+        $conn = Connection::getInstance();
+        $sqlUpdated = "call unlockTrainerAccount(?)";
+        $stmt = $conn->getDb()->prepare($sqlUpdated);
+        $stmt->bindParam(1, $trainerId);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new trainerDa();

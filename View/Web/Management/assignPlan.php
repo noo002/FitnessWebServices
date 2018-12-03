@@ -46,7 +46,7 @@ and open the template in the editor.
                         echo '<input type="radio" id="' . $key['activityPlanId'] . '" checked name="activityPlan" value="" />';
                         echo "</td>";
                     }
-                    echo "<td><button value='" . $key['activityPlanId'] . "' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-floppy-saved'></span>&nbsp;&nbsp;save</button></td>";
+                    echo "<td><button value='" . $key['activityPlanId'] . "' class='btn btn-xs btn-success'><span class='glyphicon glyphicon-floppy-saved'></span>&nbsp;&nbsp;Select</button></td>";
                     echo "</td>";
                 }
                 ?>

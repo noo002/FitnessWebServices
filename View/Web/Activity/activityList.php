@@ -12,7 +12,7 @@
                 <th>Image</th>
                 <th>Name</th>
                 <th>Calories burn per minutes</th>
-                <th>Recommended time(minutes)</th>
+                <th>Recommended Duration (minutes)</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
