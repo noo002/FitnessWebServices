@@ -158,10 +158,27 @@ class foodDa {
         $conn = Connection::getInstance();
         $sqlSelected = "call getFoodName(?)";
         $stmt = $conn->getDb()->prepare($sqlSelected);
-        $stmt->bindParam(1,$foodId);
+        $stmt->bindParam(1, $foodId);
         try {
             $stmt->execute();
-            foreach($stmt->fetch() as $row){
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function barcodeSearch($barcode) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call barcodeSearch(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $barcode);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
                 $result = $row;
                 break;
             }

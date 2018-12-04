@@ -99,6 +99,25 @@ class traineeDa {
         }
     }
 
+    public function registerNewTrainee($name, $address, $gender, $birthdate, $email, $password, $image) {
+        $conn = Connection::getInstance();
+        $sqlInserted = "call registerNewTrainee(?,?,?,?,?,?,?)";
+        $stmt = $conn->getDb()->prepare($sqlInserted);
+        $stmt->bindParam(1, $name);
+        $stmt->bindParam(2, $address);
+        $stmt->bindParam(3, $gender);
+        $stmt->bindParam(4, $birthdate);
+        $stmt->bindParam(5, $email);
+        $stmt->bindParam(6, $password);
+        $stmt->bindParam(7, $image);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new traineeDa();
