@@ -2,6 +2,7 @@
 
 require_once 'Connection.php';
 require_once 'trainerLoginLog.php';
+
 //require_once '../Model/trainerLoginLog.php';  
 
 class trainerLoginLogDa {
@@ -85,7 +86,7 @@ class trainerLoginLogDa {
         $stmt->bindParam(1, $trainerId);
         try {
             $stmt->execute();
-              foreach ($stmt->fetchAll() as $row) {
+            foreach ($stmt->fetchAll() as $row) {
                 $result = $row['createAt'];
             }
             return $result;
@@ -94,9 +95,43 @@ class trainerLoginLogDa {
         }
     }
 
+    public function getTrainerLoginLog() {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getTrainerLoginLog()";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        try {
+            $stmt->execute();
+            $result = array();
+            foreach ($stmt->fetchAll() as $row) {
+                $a = array(
+                    "trainerLoginLogId" => $row['trainerLoginLogId']
+                );
+                array_push($result, $a);
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function deleteTrainerLog($trainerLoginLogId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call deleteTrainerLog(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $trainerLoginLogId);
+        try {
+            $stmt->execute();
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new trainerLoginLogDa();
-//$a = $da->getLastLoginDate(1);
+//$result = $da->getTrainerLoginLog();
+//foreach ($result as $row) {
+//    echo $row['trainerLoginLogId'] . "<br/>";
+//}
 //echo $a;
 //print_r($a);

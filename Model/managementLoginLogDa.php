@@ -101,8 +101,42 @@ class managementLoginLogDa {
         }
     }
 
+    public function getManagementPast() {
+        $conn = Connection::getInstance();
+        $sqlSelected = " call getManagementPast()";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $result = array();
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetchAll() as $row) {
+                $a = array(
+                    "managementLoginLogId" => $row['managementLoginLogId'],
+                );
+                array_push($result, $a);
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function deleteManagementLog($managementLogId) {
+        $conn = Connection::getInstance();
+        $sqlDeleted = "call deleteManagementLog(?)";
+        $stmt = $conn->getDb()->prepare($sqlDeleted);
+        $stmt->bindParam(1, $managementLogId);
+        try {
+            $stmt->execute();
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
-//$da = new managementLoginLogDa();
-//$result = $da->getLastSuccessfulLogin("jinghong2010@hotmail.com");
-//echo $result;
+$da = new managementLoginLogDa();
+$da->deleteManagementLog(6);
+//$result = $da->getManagementPast();
+//foreach($result as $row){
+//    echo $row['managementLoginLogId']."<br/>";
+//}

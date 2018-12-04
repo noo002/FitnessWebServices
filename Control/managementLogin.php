@@ -85,6 +85,13 @@ if (!empty($managementEmail) && !empty($managementPassword)) {
         $management = $managementDa->getManagementDetail($managementEmail, $managementPassword);
         $_SESSION['managementDetail'] = $management;
         $path = "security.php";
+        $managementLoginLogId = $managementLoginLogDa->getManagementPast();
+        if (!empty($managementLoginLogId)) {
+            foreach ($managementLoginLogId as $row => $key) {
+                $managementLoginLogDa->deleteManagementLog($key['managementLoginLogId']);
+            }
+        }
         $cf->messageAndRedict("Welcome", $path);
     }
 }
+

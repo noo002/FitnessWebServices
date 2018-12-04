@@ -31,6 +31,14 @@ if (!empty($email) && !empty($password)) {
                 $message = "ok";
                 $loginPath = "security.php";
                 $trainerDetail = $trainerDa->getTrainerDetail($email);
+
+                $trainerLoginLogId = $trainerLoginLogDa->getTrainerLoginLog();
+                if (!empty($trainerLoginLogId)) {
+                    foreach ($trainerLoginLogId as $row => $key) {
+                        $trainerLoginLogDa->deleteTrainerLog($key['trainerLoginLogId']);
+                    }
+                }
+
                 $_SESSION['trainerDetail'] = $trainerDetail;
                 $cf->messageAndRedict($message, $loginPath);
             } else if ($result > 1) {
