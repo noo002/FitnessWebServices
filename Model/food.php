@@ -1,6 +1,6 @@
 <?php
 
-class food {
+class food implements JsonSerializable {
 
     private $foodId, $name, $type, $barcode, $protein, $calories, $fat, $carbohydrate, $meassurement;
     private $foodStatus;
@@ -25,6 +25,17 @@ class food {
         if (property_exists($this, $property)) {
             return $this->$property;
         }
+    }
+
+    public function jsonSerialize() {
+        return
+                [
+                    'name' => $this->name,
+                    'calories' => $this->calories,
+                    'protein' => $this->protein,
+                    'fat' => $this->fat,
+                    'carbohydrate' => $this->carbohydrate
+        ];
     }
 
 }

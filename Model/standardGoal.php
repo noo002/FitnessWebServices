@@ -1,6 +1,16 @@
 <?php
 
-class standardGoal {
+class standardGoal implements JsonSerializable {
+
+    public function jsonSerialize() {
+        return [
+          'standardGoalId'  => $this->standardGoalId,
+            'goalName' =>$this->goalName,
+            'createAt' =>$this->creatAt,
+            'foodIntake' => $this->foodIntake,
+            'activityDuration' =>$this->activityDuration
+        ];
+    }
 
     private $standardGoalId, $goalName, $creatAt, $foodIntake, $activityDuration;
 
@@ -14,9 +24,11 @@ class standardGoal {
     function setStandardGoalId($standardGoalId) {
         $this->standardGoalId = $standardGoalId;
     }
+
     public function __get($property) {
         if (property_exists($this, $property)) {
             return $this->$property;
         }
     }
+
 }

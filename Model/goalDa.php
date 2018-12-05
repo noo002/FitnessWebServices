@@ -26,6 +26,41 @@ class goalDa {
             echo $ex->getMessage();
         }
     }
+
+    public function registerNewGoal($traineeId, $type, $description, $standardGoalId, $measurement) {
+        $conn = Connection::getInstance();
+        $sqlInserted = "call registerNewGoal(?,?,?,?,?)";
+        $stmt = $conn->getDb()->prepare($sqlInserted);
+        $stmt->bindParam(1, $traineeId);
+        $stmt->bindParam(2, $type);
+        $stmt->bindParam(3, $description);
+        $stmt->bindParam(4, $standardGoalId);
+        $stmt->bindParam(5, $measurement);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function updateGoal($traineeId, $type, $description, $standardGoalId, $measurement) {
+        $conn = Connection::getInstance();
+        $sqlInserted = "call updateGoal(?,?,?,?,?)";
+        $stmt = $conn->getDb()->prepare($sqlInserted);
+        $stmt->bindParam(1, $traineeId);
+        $stmt->bindParam(2, $type);
+        $stmt->bindParam(3, $description);
+        $stmt->bindParam(4, $standardGoalId);
+        $stmt->bindParam(5, $measurement);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new goalDa();

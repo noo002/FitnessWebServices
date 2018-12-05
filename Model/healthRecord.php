@@ -11,7 +11,7 @@
  *
  * @author Asus
  */
-class healthRecord {
+class healthRecord implements JsonSerializable {
 
     private $healthRecordId, $traineeId, $weight, $height, $description, $createAt;
 
@@ -26,10 +26,22 @@ class healthRecord {
         $this->healthRecordId = $healthRecordId;
     }
 
+    function setDescription($description) {
+        $this->description = $description;
+    }
+
     public function __get($property) {
         if (property_exists($this, $property)) {
             return $this->$property;
         }
+    }
+
+    public function jsonSerialize() {
+        return [
+            'weight' => $this->weight,
+            'height' => $this->height,
+            'createAt' => $this->createAt
+        ];
     }
 
 }

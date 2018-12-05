@@ -12,4 +12,4 @@ $traineeId = $_POST['trainerId'];
 $activityLog = new activityLog($type, $description, $duration, $distance, $traineeId);
 $da = new activityLogDa();
 $result = $da->registerNewActivityLog($activityLog);
-json_encode($result);
+echo json_encode($result);

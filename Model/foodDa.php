@@ -188,6 +188,28 @@ class foodDa {
         }
     }
 
+    public function getSearchFood($name) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getSearchFood(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $name);
+        try {
+            $stmt->execute();
+            $result = array();
+            foreach($stmt->fetchAll() as $row){
+                $a = array(
+                    'foodId' =>$row['foodId'],
+                    'name'=>$row['name'],
+                    'calories' =>$row['calories']
+                );
+                array_push($result, $a);
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new foodDa();

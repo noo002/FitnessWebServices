@@ -1,6 +1,6 @@
 <?php
 
-class activity {
+class activity implements JsonSerializable {
 
     private $activityId, $name, $image, $description, $caloriesBurnPerMin, $suggestedDuration;
     private $status;
@@ -26,6 +26,17 @@ class activity {
         if (property_exists($this, $property)) {
             return $this->$property;
         }
+    }
+
+    public function jsonSerialize() {
+        return [
+            'activityId'=>$this->activityId,
+            'name' =>$this->name,
+            'image'=>$this->image,
+            'description' =>$this->description,
+            'caloriesBurnPerMin' =>$this->caloriesBurnPerMin,
+            'suggestedDuration' =>$this->suggestedDuration
+        ];
     }
 
 }

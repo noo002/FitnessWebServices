@@ -118,6 +118,137 @@ class traineeDa {
         }
     }
 
+    public function getTraineeEmail($email) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getTraineeEmail(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $email);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getUser($email) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getTrainee(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $email);
+        try {
+            $stmt->execute();
+            $result = array();
+            foreach ($stmt->fetchAll() as $row) {
+                $a = array(
+                    'traineeId' => $row['traineeId'],
+                    'name' => $row['name'],
+                    'address' => $row['address'],
+                    'gender' => $row['gender'],
+                    'birthDate' => $row['birthdate'],
+                    'password' => $row['password'],
+                    'image' => $row['image']
+                );
+                array_push($result, $a);
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function traineeLogin($email, $password) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call traineeLogin(?,?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $email);
+        $stmt->bindParam(2, $password);
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetch() as $row) {
+                $result = $row;
+                break;
+            }
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function updateTraineePassword($email, $password) {
+        $conn = Connection::getInstance();
+        $sqlUpdated = "call updateTraineePassword(?,?)";
+        $stmt = $conn->getDb()->prepare($sqlUpdated);
+        $stmt->bindParam(1, $email);
+        $stmt->bindParam(2, $password);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function updateGender($traineeId, $gender) {
+        $conn = Connection::getInstance();
+        $sqlUpdated = "call updateGender(?,?)";
+        $stmt = $conn->getDb()->prepare($sqlUpdated);
+        $stmt->bindParam(1, $traineeId);
+        $stmt->bindParam(2, $gender);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function updateImage($traineeId, $image) {
+        $conn = Connection::getInstance();
+        $sqlUpdated = "call updateTraineeImage(?,?)";
+        $stmt = $conn->getDb()->prepare($sqlUpdated);
+        $stmt->bindParam(1, $traineeId);
+        $stmt->bindParam(2, $image);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function updateTraineeName($traineeId, $name) {
+        $conn = Connection::getInstance();
+        $sqlUpdated = "call updateTraineeName(?,?)";
+        $stmt = $conn->getDb()->prepare($sqlUpdated);
+        $stmt->bindParam(1, $traineeId);
+        $stmt->bindParam(2, $name);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function updatePassword($traineeId, $password) {
+        $conn = Connection::getInstance();
+        $sqlUpdated = "call updatePassword(?,?)";
+        $stmt = $conn->getDb()->prepare($sqlUpdated);
+        $stmt->bindParam(1, $traineeId);
+        $stmt->bindParam(2, $password);
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
 }
 
 //$da = new traineeDa();

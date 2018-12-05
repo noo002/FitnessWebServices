@@ -11,7 +11,7 @@
  *
  * @author Asus
  */
-class trainee {
+class trainee implements JsonSerializable {
 
     private $name, $address, $gender, $birthdate, $email, $status;
     private $traineeId, $image;
@@ -37,6 +37,17 @@ class trainee {
         if (property_exists($this, $property)) {
             return $this->$property;
         }
+    }
+
+    public function jsonSerialize() {
+        return [
+            'traineeId' => $this->traineeId,
+            'name' => $this->name,
+            'address' => $this->address,
+            'gender' => $this->gender,
+            'birthDate' => $this->birthdate,
+            'image' => $this->image
+        ];
     }
 
 }
