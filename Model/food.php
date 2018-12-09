@@ -3,7 +3,7 @@
 class food implements JsonSerializable {
 
     private $foodId, $name, $type, $barcode, $protein, $calories, $fat, $carbohydrate, $meassurement;
-    private $foodStatus;
+    private $foodStatus, $unitOfMeasurement;
 
     function __construct($foodId, $name, $type, $barcode, $protein, $calories, $fat, $carbohydrate, $meassurement) {
         $this->foodId = $foodId;
@@ -15,6 +15,10 @@ class food implements JsonSerializable {
         $this->fat = $fat;
         $this->carbohydrate = $carbohydrate;
         $this->meassurement = $meassurement;
+    }
+
+    function setUnitOfMeasurement($unitOfMeasurement) {
+        $this->unitOfMeasurement = $unitOfMeasurement;
     }
 
     function setFoodStatus($foodStatus) {

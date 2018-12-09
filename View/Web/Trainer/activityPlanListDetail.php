@@ -21,9 +21,9 @@ and open the template in the editor.
                 $("#dietListTable").dataTable();
             });
         </script>
-        <script type="text/javascript">
+<!--        <script type="text/javascript">
             function disableF5(e) {
-                if ((e.which || e.keyCode) === 116 ) {
+                if ((e.which || e.keyCode) === 116) {
                     e.preventDefault();
                     alert("You are not allowed to refresh this page");
                 }
@@ -32,7 +32,7 @@ and open the template in the editor.
             $(document).ready(function () {
                 $(document).on("keydown", disableF5);
             });
-        </script>
+        </script>-->
         <style type="text/css">
             tbody{
                 font-size: 12pt;
@@ -42,12 +42,17 @@ and open the template in the editor.
         <p><b><a href="../../../Control/Trainer/activityPlanList.php">Activity Plan</a> - Activity Plan Detail</b></p>
         <br/>
         <h4><b><?php echo $_SESSION['activityPlanDescription'] ?></b></h4>
-        <form method="post" action="">
+        <p id="displayTotalCalBurn">
+            <b>Activity List - Total Calories Burn : <?php echo $_SESSION['total'] ?></b>
+        </p>
+
+        <form method="post" action="../../../Control/Trainer/actionActivityPlanDetail.php">
             <table id="activityListTable">
                 <thead>
                 <th>Name</th>
                 <th>Calories Burn Per Minutes</th>
                 <th>Suggested Duration</th>
+                <th>Total Calories Burned</th>
                 <th>Action</th>
                 </thead>
                 <tbody>
@@ -58,6 +63,7 @@ and open the template in the editor.
                         echo "<td>" . $row['name'] . "</td>";
                         echo "<td>" . $row['caloriesburnpermin'] . "</td>";
                         echo "<td>" . $row['suggestedduration'] . "</td>";
+                        echo "<td> " . $row['totalCaloriesBurned'] . " </td>";
                         $cancel = "<td><button id='" . $row['activityId'] . "' name='activityId' value='" . $row['activityId'] . "'  class='btn btn-primary btn-xs'>Cancel</button></td>";
                         $select = "<td><button id='" . $row['activityId'] . "' name='activityId' value='" . $row['activityId'] . "'  class='btn btn-success btn-xs'>Select</button></td>";
                         if ($row['status'] == 1) {
@@ -73,38 +79,46 @@ and open the template in the editor.
         </form>
 
         <br/>
-        <table id="dietListTable">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Fat</th>
-                    <th>Protein</th>
-                    <th>Carbohydrate</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $foodListDetail = $_SESSION['foodListDetail'];
-                foreach ($foodListDetail as $row => $key) {
-                    echo "<tr>";
-                    echo "<td>" . $key['name'] . "</td>";
-                    echo "<td>" . $key['fat'] . "</td>";
-                    echo "<td>" . $key['protein'] . "</td>";
-                    echo "<td>" . $key['carbohydrate'] . "</td>";
-                    $cancel = '<td><input type="submit"onclick="foodAction(' . $key['foodId'] . ')" id="f' . $key['foodId'] . '"   value="Cancel" class="btn btn-primary btn-xs"/></td>';
-                    $select = '<td><input type="submit"onclick="foodAction(' . $key['foodId'] . ')" id="f' . $key['foodId'] . '"  value="Select" class="btn btn-xs btn-success"/></td>';
-                    if ($key['status'] == 1) {
-                        echo $cancel;
-                    } else {
-                        echo $select;
+        <p>
+
+            <b>Food List - Total Calories Earn: <?php echo $_SESSION['totalCalories'] ?></b>
+        </p>
+        <form method="post" action="../../../Control/Trainer/actionFoodPlanDetail.php">
+            <table id="dietListTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Fat</th>
+                        <th>Protein</th>
+                        <th>Carbohydrate</th>
+                        <th>Calories</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $foodListDetail = $_SESSION['foodListDetail'];
+                    foreach ($foodListDetail as $row => $key) {
+                        echo "<tr>";
+                        echo "<td>" . $key['name'] . "</td>";
+                        echo "<td>" . $key['fat'] . "</td>";
+                        echo "<td>" . $key['protein'] . "</td>";
+                        echo "<td>" . $key['carbohydrate'] . "</td>";
+                        echo "<td>". $key['calories'] ."</td>";
+                        $cancel = '<td><button name="foodId"  id="f' . $key['foodId'] . '"   value="'.$key['foodId']  .'" class="btn btn-primary btn-xs">Cancel</button></td>';
+                        $select = '<td><button name="foodId"  id="f' . $key['foodId'] . '"  value="'. $key['foodId'] .'" class="btn btn-xs btn-success">Select</button></td>';
+                        if ($key['status'] == 1) {
+                            echo $cancel;
+                        } else {
+                            echo $select;
+                        }
+                        echo "</tr>";
                     }
-                    echo "</tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-        <script>
+                    ?>
+                </tbody>
+            </table>
+        </form>
+<!--        <script>
             function foodAction(foodId) {
                 $.ajax({
                     method: "post",
@@ -127,7 +141,7 @@ and open the template in the editor.
                     }
                 });
             }
-        </script>
+        </script>-->
         <?php
         require_once '../footer.php';
         ?>

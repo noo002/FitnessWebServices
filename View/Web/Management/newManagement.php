@@ -67,8 +67,8 @@ and open the template in the editor.
                             <td colspan="2"class="alert alert-info">
                                 <strong>
                                     <ul>
-                                        <li>Password will send through the email.</li>
-                                        <li>Email cannot change after insert.</li>
+                                        <li>Password will be send to you thought registered email.</li>
+                                        <li>Email cannot be changed after registration</li>
                                     </ul>
                                 </strong>
                             </td>

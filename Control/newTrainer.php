@@ -41,7 +41,7 @@ if ($cf->checkEmailFormat($email) == true) {
                 $username = "FitnessApplication2018@gmail.com";
                 $password = "taruc2018";
                 $from = "FitnessApplication2018@gmail.com";
-                $to = "eugence966@hotmail.com";
+                $to = $email;
                 $subject = "Your new Password";
                 $body = "Your password is $trainerPassword.\n"
                         . "please enter this  password into the System.\n"

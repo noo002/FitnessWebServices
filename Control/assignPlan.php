@@ -12,10 +12,10 @@ $checkExisted = $activityPlanDa->checkAssignedPlan($traineeId);
 //which mean have in database
 if ($checkExisted == 1) {
     $result = $activityPlanDa->updateAssignPlan($activityPlanId, $traineeId);
-    $message = "Activity Plan was updated!";
+    $message = "Activity Plan has been updated.";
 } else {
     $result = $activityPlanDa->registerNewAssignPlan($activityPlanId, $traineeId);
-    $message = "New Acitivity Plan was assigned!";
+    $message = "Activity Plan has been assigned.";
 }
 $path = "traineeList.php";
 $cf = new commonFunction();

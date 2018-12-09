@@ -37,7 +37,9 @@ class goalDa {
         $stmt->bindParam(4, $standardGoalId);
         $stmt->bindParam(5, $measurement);
         try {
-            $result = $stmt->execute();
+            $result = array(
+                'result' =>$stmt->execute()
+            );
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -54,7 +56,9 @@ class goalDa {
         $stmt->bindParam(4, $standardGoalId);
         $stmt->bindParam(5, $measurement);
         try {
-            $result = $stmt->execute();
+            $result = array(
+                'result' =>$stmt->execute()
+            );
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();

@@ -6,7 +6,7 @@ require_once '../Model/trainee.php';
 
 session_start();
 $traineeDa = new traineeDa();
-$AllTrainee = $traineeDa->getAllTrainee();
+$AllTrainee = $traineeDa->getTrainee();
 $_SESSION['allTrainee'] = $AllTrainee;
 $path = "../View/Web/Management/studentList.php";
 $cf = new commonFunction();

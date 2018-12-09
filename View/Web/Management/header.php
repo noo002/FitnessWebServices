@@ -65,9 +65,9 @@ if (empty($managementEmail)) {
                 <h2>Fitness Companion</h2>
                 <ul class="nav nav-tabs">
                     <li ><a href="../../../Control/trainerList.php">Trainer</a></li>
-                    <li class="register"><a href="../../../Control/traineeList.php">Student</a></li>
+                    <li class="register"><a href="../../../Control/traineeList.php">Trainee</a></li>
                     <li class="register"><a href="../../../Control/managementList.php">User</a></li>
-                    <li><a href="../../../Control/foodList.php">Food Nutrient</a></li>
+                    <li><a href="../../../Control/foodList.php">Food </a></li>
                     <li><a href="../../../Control/activityList.php">Activity</a></li>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -78,7 +78,7 @@ if (empty($managementEmail)) {
                                 <li><a href="#" onclick="viewProfile()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
                                 <li><a href="#" onclick="editProfile()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-pencil"></span> Edit Profile</a></li>
                                 <li><a href="#" onclick="changePass()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-cog"></span> Change Password</a></li>
-                                <li><a href="../../../Control/security.php" style="font-size:12pt;"><span class="glyphicon glyphicon-lock"></span>&nbsp; View Security</a></li>
+                                <li><a href="../../../Control/security.php" style="font-size:12pt;"><span class="glyphicon glyphicon-lock"></span>&nbsp; View Security Logs</a></li>
                                 <li><hr/></li>
 
                                 <li><a href="../../../Control/managementLogout.php" style="font-size:12pt;"  ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

@@ -36,7 +36,12 @@ require_once '../../../Control/CommonFunction.php';
                 }
                 echo "<td>$key->birthdate</td>";
                 echo "<td>$key->email</td>";
-                echo "<td>$key->status</td>";
+               if($key->status == 1){
+                    echo "<td>Active</td>";
+               }
+               else{
+                   echo "<td>Inactive</td>";
+               }
                 echo '<td class="text-center">'
                 . '<button name="detail" value="' . $key->traineeId . '" class="btn btn-primary btn-xs"  href="#"><span class="glyphicon glyphicon-info-sign"></span> Detail</button> &nbsp '
                 . '<button name="assignPlan" value="' . $key->traineeId . '" class="btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-pencil"></span> Assign Plan</button> </td>';

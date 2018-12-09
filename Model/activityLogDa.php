@@ -21,7 +21,9 @@ class activityLogDa {
         $stmt->bindParam(4, $distance);
         $stmt->bindParam(5, $traineeId);
         try {
-            $result = $stmt->execute();
+            $result = array(
+                "result" =>$stmt->execute()
+            );
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();

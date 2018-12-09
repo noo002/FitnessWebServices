@@ -66,7 +66,9 @@ class healthRecordDa {
         $stmt->bindParam(3, $height);
         $stmt->bindParam(4, $description);
         try {
-            $result = $stmt->execute();
+            $result = array(
+                'result' =>$stmt->execute()
+            );
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();

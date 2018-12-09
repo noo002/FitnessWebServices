@@ -13,7 +13,7 @@ $activityId = $_POST['activityId'];
 $cf = new commonFunction();
 session_start();
 $activityPlanId = $_SESSION['activityPlanId'];
-
+$path = "../../View/Web/Trainer/activityPlanListDetail.php";
 $activityPlanDa = new activityPlanDa();
 
 $checkExisted = $activityPlanDa->checkActivityInPlanDetail($activityId, $activityPlanId);
@@ -25,8 +25,21 @@ if ($checkExisted == 0) {
     $trainerTrackLog = new trainerTrackLog($trainerId, 3);
     $facadeTrainer = new facadeTrainerTracking($trainerTrackLog);
     $facadeTrainer->processTrackLog();
-    $code = 1;
-    echo json_encode($code);
+    $activityPlanDa = new activityPlanDa();
+    $activityPlanListDetail = $activityPlanDa->getAllActivityInList($_SESSION['trainerDetail']->id, $activityPlanId);
+    $description = $activityPlanDa->getActivityPlanDescription($activityPlanId, $_SESSION['trainerDetail']->id);
+
+    $total = 0;
+    foreach ($activityPlanListDetail as $row => $key) {
+        if ($key['status'] == 1) {
+            $total = $total + $key['totalCaloriesBurned'];
+        }
+    }
+    $_SESSION['total'] = $total;
+    $_SESSION['activityPlanDescription'] = $description;
+    $_SESSION['activityPlanId'] = $activityPlanId;
+    $_SESSION['activityPlanListDetail'] = $activityPlanListDetail;
+    $message = "This Activity is Assigned to the Plan";
 }
 //This activity is in this activityPlan 
 else if ($checkExisted == 1) {
@@ -35,16 +48,27 @@ else if ($checkExisted == 1) {
     $trainerTrackLog = new trainerTrackLog($trainerId, 10);
     $facadeTrainer = new facadeTrainerTracking($trainerTrackLog);
     $facadeTrainer->processTrackLog();
-    $code = 2;
-    echo json_encode($code);
+    $activityPlanDa = new activityPlanDa();
+    $activityPlanListDetail = $activityPlanDa->getAllActivityInList($_SESSION['trainerDetail']->id, $activityPlanId);
+    $description = $activityPlanDa->getActivityPlanDescription($activityPlanId, $_SESSION['trainerDetail']->id);
+
+    $total = 0;
+    foreach ($activityPlanListDetail as $row => $key) {
+        if ($key['status'] == 1) {
+            $total = $total + $key['totalCaloriesBurned'];
+        }
+    }
+    $_SESSION['total'] = $total;
+    $_SESSION['activityPlanDescription'] = $description;
+    $_SESSION['activityPlanId'] = $activityPlanId;
+    $_SESSION['activityPlanListDetail'] = $activityPlanListDetail;
+    $message = "This Activity is removed from the plan";
 }
 //This might be error 
 else {
-    $code = 3;
-    echo json_encode($code);
+    $message = "Please contact Internal staff due to internal problem";
 }
-
-
+$cf->messageAndRedict($message, $path);
 
 
 

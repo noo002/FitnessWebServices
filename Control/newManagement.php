@@ -27,7 +27,7 @@ if ($cf->checkEmailFormat($email) == true) {
                 $username = "FitnessApplication2018@gmail.com";
                 $password = "taruc2018";
                 $from = "FitnessApplication2018@gmail.com";
-                $to = "eugence966@hotmail.com";
+                $to = $email;
                 $subject = "Your new Password";
                 $body = "Your password is $newPassword.\n"
                         . "please enter this  password into the System.\n"
@@ -36,7 +36,7 @@ if ($cf->checkEmailFormat($email) == true) {
 
                 $smtpEmail = new email($host, $username, $password, $from, $to, $subject, $body);
                 $smtpEmail->sendEmail();
-                $message = "New Management have successful registered";
+                $message = "User account has been registered";
                 $cf->messageAndRedict($message, $path);
             } else {
                 $message = "Problem occur during Management registration";

@@ -99,6 +99,7 @@ and open the template in the editor.
                 hAxis: {
                     title: 'days',
                     format: 'd MMM yyyy'
+                  
                 },
                 vAxis: {
                     title: 'Weight',

@@ -18,9 +18,29 @@ require_once 'Connection.php';
 
 class traineeDa {
 
-    public function getAllTrainee() {
+    public function getAllTrainee($trainerId) {
         $conn = Connection::getInstance();
-        $sqlSelected = "call getAllTrainee()";
+        $sqlSelected = "call getAllTrainee(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $trainerId);
+        $traineeArray = array();
+        try {
+            $stmt->execute();
+            foreach ($stmt->fetchAll() as $row) {
+                $trainee = new trainee($row['name'], $row['address'], $row['gender'], $row['birthDate'], $row['email'], $row['status']);
+                $trainee->setTraineeId($row['traineeId']);
+                array_push($traineeArray, $trainee);
+            }
+            return $traineeArray;
+        } catch (Exception $ex) {
+            $cf = new commonFunction();
+            $cf->message($ex->getMessage());
+        }
+    }
+
+    public function getTrainee() {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getTraineeList()";
         $stmt = $conn->getDb()->prepare($sqlSelected);
         $traineeArray = array();
         try {
@@ -111,7 +131,9 @@ class traineeDa {
         $stmt->bindParam(6, $password);
         $stmt->bindParam(7, $image);
         try {
-            $result = $stmt->execute();
+            $result = array(
+                'result' => $stmt->execute()
+            );
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -126,7 +148,9 @@ class traineeDa {
         try {
             $stmt->execute();
             foreach ($stmt->fetch() as $row) {
-                $result = $row;
+                $result = array(
+                    "email" => $row
+                );
                 break;
             }
             return $result;
@@ -170,7 +194,9 @@ class traineeDa {
         try {
             $stmt->execute();
             foreach ($stmt->fetch() as $row) {
-                $result = $row;
+                $result = array(
+                    "status" => $row
+                );
                 break;
             }
             return $result;
@@ -186,7 +212,9 @@ class traineeDa {
         $stmt->bindParam(1, $email);
         $stmt->bindParam(2, $password);
         try {
-            $result = $stmt->execute();
+            $result = array(
+                "result" => $stmt->execute()
+            );
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -200,7 +228,9 @@ class traineeDa {
         $stmt->bindParam(1, $traineeId);
         $stmt->bindParam(2, $gender);
         try {
-            $result = $stmt->execute();
+            $result = array(
+                'result' => $stmt->execute()
+            );
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -214,7 +244,9 @@ class traineeDa {
         $stmt->bindParam(1, $traineeId);
         $stmt->bindParam(2, $image);
         try {
-            $result = $stmt->execute();
+            $result = array(
+                'result' => $stmt->execute()
+            );
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -228,7 +260,9 @@ class traineeDa {
         $stmt->bindParam(1, $traineeId);
         $stmt->bindParam(2, $name);
         try {
-            $result = $stmt->execute();
+            $result = array(
+                'result' => $stmt->execute()
+            );
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -242,7 +276,9 @@ class traineeDa {
         $stmt->bindParam(1, $traineeId);
         $stmt->bindParam(2, $password);
         try {
-            $result = $stmt->execute();
+            $result = array(
+                'result' => $stmt->execute()
+            );
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();

@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>New Food Registration</title>
-        
+
         <link rel="stylesheet" href="/resources/demos/style.css">
     </head>
     <body>
@@ -56,8 +56,13 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <th>Measurement (1 = g, 2 = ml)</th>
-                        <td> <input type="number"  name="measurement"  maxlength="255" class="form-control" placeholder="Enter food measurement code" required/></td>
+                        <td> <input type="number"  name="measurement" min="1" max="2"  maxlength="2" class="form-control" placeholder="Enter food measurement code" required/></td>
                     </tr>
+                    <tr>
+                        <th>Unit of measurement</th>
+                        <td> <input type="number"  name="unitOfMeasurement"  maxlength="255" class="form-control" placeholder="Enter food unit of measurement" required/></td>
+                    </tr>
+
                     <tr>
                         <th>Barcode</th>
                         <td> 

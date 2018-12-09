@@ -22,7 +22,9 @@ class dietLogDa {
         $stmt->bindParam(4, $calories);
         $stmt->bindParam(5, $traineeId);
         try {
-            $result = $stmt->execut();
+            $result = array(
+                "result" =>$stmt->execute()
+            );
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();

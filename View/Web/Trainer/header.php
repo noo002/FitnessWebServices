@@ -59,7 +59,7 @@ require_once 'changePassword.php';
                     <li ><a href="../../../Control/Trainer/traineeList.php">Trainee</a></li>
                     <!-- <li class="register"><a href="dietPlanList.php">Meal Plan</a></li>-->
                     <li class="register"><a href="../../../Control/Trainer/activityPlanList.php">Activity Plan</a></li>
-                    <li><a href="../../../Control/Trainer/foodList.php">Food Nutrient</a></li>
+                    <li><a href="../../../Control/Trainer/foodList.php">Food</a></li>
                     <li><a href="../../../Control/Trainer/activityList.php">Activity</a></li>
                     <li><a href="../../../Control/Trainer/goalList.php">Goal</a></li>
                     <ul class="nav navbar-nav navbar-right">
@@ -69,7 +69,7 @@ require_once 'changePassword.php';
                                 <li><a href="#" onclick="viewProfile()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
                                 <li><a href="#" onclick="editProfile()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-pencil"></span> Edit Profile</a></li>
                                 <li><a href="#" onclick="changePass()" style="font-size:12pt;"  ><span class="glyphicon glyphicon-cog"></span> Change Password</a></li>
-                                <li><a href="../../../Control/Trainer/security.php" style="font-size:12pt;"><span class="glyphicon glyphicon-lock"></span>&nbsp; View Security</a></li>
+                                <li><a href="../../../Control/Trainer/security.php" style="font-size:12pt;"><span class="glyphicon glyphicon-lock"></span>&nbsp; View Security Logs</a></li>
                                 <li><hr/></li>
                                 <li><a href="../../../Control/Trainer/logout.php" style="font-size:12pt;"  ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                             </ul>

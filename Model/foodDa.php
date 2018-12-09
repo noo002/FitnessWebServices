@@ -8,7 +8,7 @@ class foodDa {
 
     public function getAllFood() {
         $conn = Connection::getInstance();
-        $sqlSelected = "select * from food";
+        $sqlSelected = "call getAllFood()";
         $stmt = $conn->getDb()->prepare($sqlSelected);
         try {
             $stmt->execute();
@@ -16,6 +16,7 @@ class foodDa {
             foreach ($stmt->fetchAll() as $row) {
                 $food = new food($row['foodId'], $row['name'], $row['type'], $row['barcode'], $row['protein'], $row['calories'], $row['fat'], $row['carbohydrate'], $row['messurement']);
                 $food->setFoodStatus($row['status']);
+                $food->setUnitOfMeasurement($row['unitOfMeasurement']);
                 array_push($f, $food);
             }
             return $f;
@@ -44,7 +45,7 @@ class foodDa {
 
     public function registerNewFood($food) {
         $conn = Connection::getInstance();
-        $sqlSelected = "call registerNewFood(?,?,?,?,?,?,?,?)";
+        $sqlSelected = "call registerNewFood(?,?,?,?,?,?,?,?,?)";
         $stmt = $conn->getDb()->prepare($sqlSelected);
         $name = $food->name;
         $type = $food->type;
@@ -54,6 +55,7 @@ class foodDa {
         $fat = $food->fat;
         $carbo = $food->carbohydrate;
         $measurement = $food->meassurement;
+        $unitofMeasurement = $food->unitOfMeasurement;
         $stmt->bindParam(1, $name);
         $stmt->bindParam(2, $type);
         $stmt->bindParam(3, $barcode);
@@ -62,6 +64,7 @@ class foodDa {
         $stmt->bindParam(6, $fat);
         $stmt->bindParam(7, $carbo);
         $stmt->bindParam(8, $measurement);
+        $stmt->bindParam(9, $unitofMeasurement);
         try {
             $result = $stmt->execute();
             return $result;
@@ -179,7 +182,9 @@ class foodDa {
         try {
             $stmt->execute();
             foreach ($stmt->fetch() as $row) {
-                $result = $row;
+                $result = array(
+                    "barcode" => $row
+                );
                 break;
             }
             return $result;
@@ -196,11 +201,11 @@ class foodDa {
         try {
             $stmt->execute();
             $result = array();
-            foreach($stmt->fetchAll() as $row){
+            foreach ($stmt->fetchAll() as $row) {
                 $a = array(
-                    'foodId' =>$row['foodId'],
-                    'name'=>$row['name'],
-                    'calories' =>$row['calories']
+                    'foodId' => $row['foodId'],
+                    'name' => $row['name'],
+                    'calories' => $row['calories']
                 );
                 array_push($result, $a);
             }

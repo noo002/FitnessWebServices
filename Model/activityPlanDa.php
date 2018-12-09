@@ -87,6 +87,7 @@ class activityPlanDa {
                     "name" => $row['name'],
                     "caloriesburnpermin" => $row['caloriesburnpermin'],
                     "suggestedduration" => $row['suggestedduration'],
+                    "totalCaloriesBurned" => $row['caloriesburnpermin'] * $row['suggestedduration'],
                     "status" => ""
                 );
                 array_push($result, $data);
@@ -182,6 +183,7 @@ class activityPlanDa {
                     "fat" => $row['fat'],
                     "protein" => $row['protein'],
                     "carbohydrate" => $row['carbohydrate'],
+                    'calories' =>$row['calories'],
                     "status" => ""
                 );
                 array_push($result, $s);

@@ -42,16 +42,25 @@ if (isset($_POST['studentList'])) {
     $trainerId = $_POST['detail'];
     $path = "../View/Web/Management/trainerDetail.php";
     session_start();
+    $trainerTrackLogDa = new trainerTrackLogDa();
+    $checkPast30DayRecord = $trainerTrackLogDa->getTrainerPastTrackLog();
+    if (!empty($checkPast30DayRecord)) {
+        foreach ($checkPast30DayRecord as $row => $key) {
+            $trainerTrackLogDa->deletePastTrackLog($key['trainerTrackLogId']);
+        }
+    }
     $da = new trainerTrackLogDa();
     $s = array();
     for ($i = 1; $i < 12; $i++) {
         $r = array(
-           "Total" => $da->getTrainerTrackLog($trainerId, $i)
+            "Total" => $da->getTrainerTrackLog($trainerId, $i)
         );
         array_push($s, $r);
     }
     $_SESSION['trainerTrackLog'] = $s;
-    
+
+
+
     $cf = new commonFunction();
     $cf->redicrect($path);
 } else {

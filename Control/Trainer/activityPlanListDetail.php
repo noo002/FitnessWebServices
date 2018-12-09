@@ -23,15 +23,28 @@ if (isset($_POST['detail'])) {
     $activityPlanDa = new activityPlanDa();
     $activityPlanListDetail = $activityPlanDa->getAllActivityInList($_SESSION['trainerDetail']->id, $activityPlanId);
     $description = $activityPlanDa->getActivityPlanDescription($activityPlanId, $_SESSION['trainerDetail']->id);
+
+    $total = 0;
+    foreach ($activityPlanListDetail as $row => $key) {
+        if ($key['status'] == 1) {
+            $total = $total + $key['totalCaloriesBurned'];
+        }
+    }
+    $_SESSION['total'] = $total;
     $_SESSION['activityPlanDescription'] = $description;
     $_SESSION['activityPlanId'] = $activityPlanId;
     $_SESSION['activityPlanListDetail'] = $activityPlanListDetail;
 
     //here is food places
     $foodListDetail = $activityPlanDa->getActivityPlanFoodList($_SESSION['trainerDetail']->id, $activityPlanId);
+    $totalCalories = 0;
+    foreach($foodListDetail as $row =>$key){
+        if($key['status'] ==1){
+            $totalCalories = $totalCalories + $key['calories'];
+        }
+    }
+     $_SESSION['totalCalories'] = $totalCalories;
     $_SESSION['foodListDetail'] = $foodListDetail;
-    
-    
 } else if (isset($_POST['feedback'])) {
     $path = "../../View/Web/Trainer/feedback.php";
     $activityPlanId = $_POST['feedback'];

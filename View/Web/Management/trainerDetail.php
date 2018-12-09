@@ -20,7 +20,7 @@ and open the template in the editor.
         <p>
             <b><a href="../../../Control/trainerList.php">Trainer List</a> - Trainer Detail </b>
         </p>
-        <p><b>Past 30 day record will be removed</b></p>
+        <p><b>Pass 30 days Logs</b></p>
         <br/>
         <div id="columnchart_values" style="width: 1500px; height: 300px;"></div>
         <script type="text/javascript">
@@ -38,7 +38,7 @@ foreach ($trainerTrackLog as $row => $key) {
     } else if ($row == 2) {
         echo '["Assign Activity Into plan",' . $key['Total'] . ' , "red"],';
     } else if ($row == 3) {
-        echo '["Edit Diet into Plan",' . $key['Total'] . ' , "red"],';
+        echo '["Assign Diet into Plan",' . $key['Total'] . ' , "red"],';
     } else if ($row == 4) {
         echo '["View Feedback",' . $key['Total'] . ' , "red"],';
     } else if ($row == 5) {
@@ -52,7 +52,7 @@ foreach ($trainerTrackLog as $row => $key) {
     } else if ($row == 9) {
         echo '["Remove Activity from Plan",' . $key['Total'] . ' , "red"],';
     } else if ($row == 10) {
-        echo '["Remove Die from Plan",' . $key['Total'] . ' , "red"],';
+        echo '["Remove Diet from Plan",' . $key['Total'] . ' , "red"],';
     }
 }
 ?>
@@ -67,7 +67,7 @@ foreach ($trainerTrackLog as $row => $key) {
                     2]);
 
                 var options = {
-                    title: "Trainer Activation",
+                    title: "Trainer Activities",
                     width: 1200,
                     height: 400,
                     bar: {groupWidth: "95%"},
