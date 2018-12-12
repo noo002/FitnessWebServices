@@ -38,7 +38,7 @@ class goalDa {
         $stmt->bindParam(5, $measurement);
         try {
             $result = array(
-                'result' =>$stmt->execute()
+                'result' => $stmt->execute()
             );
             return $result;
         } catch (Exception $ex) {
@@ -57,9 +57,31 @@ class goalDa {
         $stmt->bindParam(5, $measurement);
         try {
             $result = array(
-                'result' =>$stmt->execute()
+                'result' => $stmt->execute()
             );
             return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getGoal($traineeId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getGoal(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        $stmt->bindParam(1, $traineeId);
+        try {
+            $stmt->execute();
+            $result = array();
+            if ($stmt->rowCount() > 0) {
+                foreach ($stmt->fetchAll() as $row) {
+                    $goal = new goal($row['traineeId'], $row['type'], $row['description']);
+                    $goal->setGoalId($row['goalId']);
+                    $goal->setStandardGoalId($row['standardGoalId']);
+                    array_push($result, $goal);
+                }
+                return $result;
+            }
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }

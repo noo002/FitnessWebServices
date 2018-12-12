@@ -183,7 +183,7 @@ class activityPlanDa {
                     "fat" => $row['fat'],
                     "protein" => $row['protein'],
                     "carbohydrate" => $row['carbohydrate'],
-                    'calories' =>$row['calories'],
+                    'calories' => $row['calories'],
                     "status" => ""
                 );
                 array_push($result, $s);
@@ -389,6 +389,31 @@ class activityPlanDa {
         $stmt->bindParam(2, $traineeId);
         try {
             $result = $stmt->execute();
+            return $result;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getAssignedActivity($traineeId) {
+        $conn = Connection::getInstance();
+        $sqlSelected = "call getAssignedActivity(?)";
+        $stmt = $conn->getDb()->prepare($sqlSelected);
+        try {
+            $stmt->bindParam(1, $traineeId);
+            $stmt->execute();
+            $result = array();
+            if ($stmt->rowCount() > 0) {
+                foreach ($stmt->fetchAll() as $row) {
+                    $a = array(
+                        'traineeId' => $row['traineeId'],
+                        'activityId' => $row['activityId'],
+                        'frequency' => $row['frequency'],
+                        'description' => $row['description']
+                    );
+                    array_push($result, $a);
+                }
+            }
             return $result;
         } catch (Exception $ex) {
             echo $ex->getMessage();

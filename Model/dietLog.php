@@ -11,7 +11,7 @@
  *
  * @author Asus
  */
-class dietLog {
+class dietLog implements JsonSerializable {
 
     private $type, $foodName, $quantity, $calories, $traineeId;
 
@@ -27,6 +27,16 @@ class dietLog {
         if (property_exists($this, $property)) {
             return $this->$property;
         }
+    }
+
+    public function jsonSerialize() {
+        return [
+            'traineeId' => $this->traineeId,
+            'type' => $this->type,
+            'foodName' => $this->foodName,
+            'quantity' => $this->quantity,
+            'calories' => $this->calories
+        ];
     }
 
 }

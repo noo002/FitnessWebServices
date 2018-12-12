@@ -1,6 +1,6 @@
 <?php
 
-class goal {
+class goal implements JsonSerializable {
 
     private $goalId, $traineeId, $type, $description, $due, $standardGoalId;
 
@@ -26,6 +26,14 @@ class goal {
         if (property_exists($this, $property)) {
             return $this->$property;
         }
+    }    public function jsonSerialize() {
+        return[
+            'goalId' =>$this->goalId,
+            'traineeId' =>$this->traineeId,
+            'type'=>$this->type,
+            'description' =>$this->description,
+            'standardGoalId'=>$this->standardGoalId
+        ];
     }
 
 }
