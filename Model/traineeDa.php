@@ -46,8 +46,14 @@ class traineeDa {
         try {
             $stmt->execute();
             foreach ($stmt->fetchAll() as $row) {
-                $trainee = new trainee($row['name'], $row['address'], $row['gender'], $row['birthDate'], $row['email'], $row['status']);
-                $trainee->setTraineeId($row['traineeId']);
+                $trainee = array(
+                    'name' =>$row['name'],
+                    'gender' =>$row['gender'],
+                    'isAssign' =>$row['isAssign'],
+                    'status'=>$row['status'],
+                    'email' =>$row['email'],
+                    'traineeId' =>$row['traineeId']
+                );
                 array_push($traineeArray, $trainee);
             }
             return $traineeArray;

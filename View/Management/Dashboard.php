@@ -36,7 +36,7 @@ and open the template in the editor.
                                     </div>
                                     <hr>
                                     <div class="stats">
-                                        <i class="fa fa-clock-o"></i> Information are reliable
+                                        <i class="fa fa-clock-o"></i> Updated Just now
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@ and open the template in the editor.
                                     </div>
                                     <hr>
                                     <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
+                                        <i class="fa fa-history"></i> Updated Just now
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@ and open the template in the editor.
                                     </div>
                                     <hr>
                                     <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
+                                        <i class="fa fa-history"></i> Updated Just now
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@ and open the template in the editor.
                                     </div>
                                     <hr>
                                     <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
+                                        <i class="fa fa-history"></i> Updated Just now
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@ and open the template in the editor.
                                     </div>
                                     <hr>
                                     <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
+                                        <i class="fa fa-history"></i> Updated Just now
                                     </div>
                                 </div>
                             </div>

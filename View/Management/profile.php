@@ -69,13 +69,13 @@ and open the template in the editor.
 <!--                                        <label><input type="radio" id="male" value="1" name="gender" />Male</label>&nbsp;&nbsp;
                                         <label><input type="radio" id="female" value="2" name="gender"/>Female</label>-->
                                         <?php
-                                        $maleChecked = '<label><input type="radio" id="male" value="1" name="gender" checked />Male</label>';
-                                        $femaleChecked = '<label><input type="radio" id="female" value="2" name="gender" checked/>Female</label>';
+                                        $maleChecked = '<label style="color:black"><input type="radio" id="male" value="1" name="gender" checked/> Male</label>';
+                                        $femaleChecked = '<label style="color:black"><input type="radio" id="female" value="2" name="gender" checked/> Female</label>';
                                         if ($_SESSION['managementDetail']->gender == 1) {
                                             echo $maleChecked, " &nbsp;&nbsp;";
-                                            echo '<label><input type="radio" id="female" value="2" name="gender" />Female</label>';
+                                            echo '<label style="color:black"><input type="radio" id="female" value="2" name="gender" /> Female</label>';
                                         } else {
-                                            echo '<label><input type="radio" id="male" value="1" name="gender" checked />Male</label>&nbsp;&nbsp;';
+                                            echo '<label style="color:black"><input type="radio" id="male" value="1" name="gender" checked /> Male</label>&nbsp;&nbsp;';
                                             echo $femaleChecked;
                                         }
                                         ?>

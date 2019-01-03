@@ -56,6 +56,32 @@ and open the template in the editor.
                                 var data = google.visualization.arrayToDataTable([
                                     ["Element", "time", {role: "style"}],
 <?php
+/* this place is let you know the 1,2,3,4 is for what
+  foreach ($trainerTrackLog as $row => $key) {
+  if ($row == 0) {
+  echo '["View Trainer Detail",' . $key['Total'] . ' , "red"],';
+  } else if ($row == 1) {
+  echo '["Edit Activity Plan",' . $key['Total'] . ' , "red"],';
+  } else if ($row == 2) {
+  echo '["Assign Activity Into plan",' . $key['Total'] . ' , "red"],';
+  } else if ($row == 3) {
+  echo '["Assign Diet into Plan",' . $key['Total'] . ' , "red"],';
+  } else if ($row == 4) {
+  echo '["View Feedback",' . $key['Total'] . ' , "red"],';
+  } else if ($row == 5) {
+  echo '["View Food",' . $key['Total'] . ' , "red"],';
+  } else if ($row == 6) {
+  echo '["View Activity",' . $key['Total'] . ' , "red"],';
+  } else if ($row == 7) {
+  echo '["Register New standard Goal",' . $key['Total'] . ' , "red"],';
+  } else if ($row == 8) {
+  echo '["Edit Standard Goal",' . $key['Total'] . ' , "red"],';
+  } else if ($row == 9) {
+  echo '["Remove Activity from Plan",' . $key['Total'] . ' , "red"],';
+  } else if ($row == 10) {
+  echo '["Remove Diet from Plan",' . $key['Total'] . ' , "red"],';
+  }
+ *  */
 foreach ($trainerTrackLog as $row => $key) {
     if ($row == 0) {
         echo '["View Trainer Detail",' . $key['Total'] . ' , "red"],';
@@ -67,10 +93,6 @@ foreach ($trainerTrackLog as $row => $key) {
         echo '["Assign Diet into Plan",' . $key['Total'] . ' , "red"],';
     } else if ($row == 4) {
         echo '["View Feedback",' . $key['Total'] . ' , "red"],';
-    } else if ($row == 5) {
-        echo '["View Food",' . $key['Total'] . ' , "red"],';
-    } else if ($row == 6) {
-        echo '["View Activity",' . $key['Total'] . ' , "red"],';
     } else if ($row == 7) {
         echo '["Register New standard Goal",' . $key['Total'] . ' , "red"],';
     } else if ($row == 8) {
@@ -94,7 +116,7 @@ foreach ($trainerTrackLog as $row => $key) {
 
                                 var options = {
                                     title: "Trainer Activities",
-                                    width: 1070 ,
+                                    width: 1070,
                                     height: 400,
                                     bar: {groupWidth: "95%"},
                                     legend: {position: "none"},
@@ -110,7 +132,7 @@ foreach ($trainerTrackLog as $row => $key) {
 
         </div>
     </div>
-
+    <br/><br/><br/>
     <?php
     require_once './footer.php';
     ?>

@@ -61,8 +61,8 @@ and open the template in the editor.
                                         <tr>
                                             <td><B>Gender  :</B> </td>
                                             <td>
-                                                <input type="radio" title="Please specify your gender" required id="male" name="gender" value="1" /><label for="male" title="Please specify your gender">&nbsp;Male</label>
-                                                <input type="radio" title="Please specify your gender" id="female" name="gender" value="2" /><label for="female" title="Please specify your gender">&nbsp;Female</label>
+                                                <input type="radio" title="Please specify your gender" required id="male" name="gender" value="1" /><label for="male" title="Please specify your gender" style="color:black">&nbsp;Male</label>
+                                                <input type="radio" title="Please specify your gender" id="female" name="gender" value="2" /><label for="female" title="Please specify your gender" style='color:black'>&nbsp;Female</label>
                                             </td>
                                         </tr>
                                         <tr>

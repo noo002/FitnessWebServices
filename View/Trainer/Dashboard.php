@@ -20,7 +20,7 @@ require_once './header.php';
                             </div>
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-clock-o"></i> Information are reliable
+                                <i class="fa fa-clock-o"></i> Updated Just Now
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@ require_once './header.php';
                             </div>
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-clock-o"></i> Information are reliable
+                                <i class="fa fa-clock-o"></i> Updated Just Now
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@ require_once './header.php';
                             </div>
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-clock-o"></i> Information are reliable
+                                <i class="fa fa-clock-o"></i> Updated Just Now
                             </div>
                         </div>
                     </div>

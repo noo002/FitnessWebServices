@@ -47,7 +47,7 @@ and open the template in the editor.
                                     <thead>
                                     <th style="color:black">Name</th>
                                     <th style="color:black">Gender</th>
-                                    <th style="color:black">Date of Birth(Y-M-D)</th>
+                                    <th style="color:black">Have Assigned?</th>
                                     <th style="color:black">Email</th>
                                     <th style="color:black">Status</th>
                                     <th style="color:black">Action</th>
@@ -57,22 +57,27 @@ and open the template in the editor.
                                         $allTrainee = $_SESSION['allTrainee'];
                                         foreach ($allTrainee as $row => $key) {
                                             echo "<tr>";
-                                            echo "<td>$key->name</td>";
-                                            if ($key->gender == 1) {
+                                            echo "<td>" . $key['name'] . "</td>";
+                                            if ($key['gender'] == 1) {
                                                 echo "<td>Male</td>";
                                             } else {
                                                 echo "<td>Female</td>";
                                             }
-                                            echo "<td>$key->birthdate</td>";
-                                            echo "<td>$key->email</td>";
-                                            if ($key->status == 1) {
+                                            if ($key['isAssign'] == 1) {
+                                                echo "<td>Yes</td>";
+                                            }
+                                            if ($key['isAssign'] == 0) {
+                                                echo "<td>No</td>";
+                                            }
+                                            echo "<td>" . $key['email'] . "   </td>";
+                                            if ($key['status'] == 1) {
                                                 echo "<td>Active</td>";
                                             } else {
                                                 echo "<td>Inactive</td>";
                                             }
                                             echo '<td class="text-center">'
-                                            . '<button name="detail" value="' . $key->traineeId . '" class="btn btn-primary btn-xs"  href="#"><span class="glyphicon glyphicon-info-sign"></span> Detail</button> &nbsp '
-                                            . '<button name="assignPlan" value="' . $key->traineeId . '" class="btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-pencil"></span> Assign Plan</button> </td>';
+                                            . '<button name="detail" value="' . $key['traineeId'] . '" class="btn btn-primary btn-xs"  href="#"><span class="glyphicon glyphicon-info-sign"></span> Detail</button> &nbsp '
+                                            . '<button name="assignPlan" value="' . $key['traineeId'] . '" class="btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-pencil"></span> Assign Plan</button> </td>';
                                             echo '</tr>';
                                             echo "</tr>";
                                         }
